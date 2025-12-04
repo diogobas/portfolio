@@ -31,7 +31,17 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+**Portfolio Constitution Principles** (1.0.0):
+- **Code Quality**: Type safety, linting, code reviews required
+- **Testing Standards**: TDD mandatory, 80% coverage for new code, unit + integration tests
+- **User Experience Consistency**: Design system compliance, WCAG 2.1 AA accessibility
+- **Performance Requirements**: Performance budget defined, monitoring strategy, <200ms p95 API response
+
+**This Plan**:
+- [ ] Code quality gates configured (ESLint, TypeScript strict mode)
+- [ ] Testing strategy documented (unit/integration test plan)
+- [ ] UX consistency plan (design system alignment)
+- [ ] Performance targets defined (response time, load time, bundle size)
 
 ## Project Structure
 
