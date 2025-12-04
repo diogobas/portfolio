@@ -1,2 +1,4 @@
-// Service exports
-// To be populated in Phase 1.3
+export { projectService } from './projectService';
+export { resumeService } from './resumeService';
+export * from './projectService';
+export * from './resumeService';
