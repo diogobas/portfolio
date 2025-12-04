@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Drawer, useMediaQuery, useTheme } from '@mui/material';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import { Header } from './Header';
 import { Navigation, NavigationLink } from './Navigation';
 import { Footer, SocialLink } from './Footer';
@@ -73,11 +75,7 @@ export const Layout: React.FC<LayoutProps> = ({
       }}
     >
       {/* Header */}
-      <Header
-        title={title}
-        subtitle={subtitle}
-        onMenuClick={handleMenuClick}
-      />
+      <Header title={title} subtitle={subtitle} onMenuClick={handleMenuClick} />
 
       {/* Main Layout Container */}
       <Box
@@ -96,10 +94,7 @@ export const Layout: React.FC<LayoutProps> = ({
               overflowY: 'auto',
             }}
           >
-            <Navigation
-              links={navigationLinks}
-              onLinkClick={handleNavigationClick}
-            />
+            <Navigation links={navigationLinks} onLinkClick={handleNavigationClick} />
           </Box>
         )}
 
@@ -115,10 +110,7 @@ export const Layout: React.FC<LayoutProps> = ({
               },
             }}
           >
-            <Navigation
-              links={navigationLinks}
-              onLinkClick={handleNavigationClick}
-            />
+            <Navigation links={navigationLinks} onLinkClick={handleNavigationClick} />
           </Drawer>
         )}
 
@@ -135,17 +127,9 @@ export const Layout: React.FC<LayoutProps> = ({
       </Box>
 
       {/* Footer */}
-      <Footer
-        socialLinks={footerSocialLinks}
-        email={footerEmail}
-      />
+      <Footer socialLinks={footerSocialLinks} email={footerEmail} />
     </Box>
   );
 };
-
-// Re-export icons for use in Layout props
-export { default as GitHubIcon } from '@mui/icons-material/GitHub';
-export { default as LinkedInIcon } from '@mui/icons-material/LinkedIn';
-export { default as EmailIcon } from '@mui/icons-material/Email';
 
 export default Layout;
