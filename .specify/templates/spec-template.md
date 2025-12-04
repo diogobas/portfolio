@@ -5,6 +5,8 @@
 **Status**: Draft  
 **Input**: User description: "$ARGUMENTS"
 
+> **Constitution Compliance**: This spec must address Code Quality, Testing Standards, UX Consistency, and Performance per Portfolio Constitution (1.0.0)
+
 ## User Scenarios & Testing *(mandatory)*
 
 <!--
@@ -65,15 +67,18 @@
 
 [Add more user stories as needed, each with an assigned priority]
 
-### Edge Cases
+### Edge Cases & Error Handling
 
 <!--
   ACTION REQUIRED: The content in this section represents placeholders.
   Fill them out with the right edge cases.
+  Per Constitution (Testing Standards), all critical paths must include error scenarios.
 -->
 
 - What happens when [boundary condition]?
 - How does system handle [error scenario]?
+- Error messages MUST be user-friendly and actionable (UX Consistency principle)
+- Performance MUST be maintained under error conditions (Performance Requirements principle)
 
 ## Requirements *(mandatory)*
 
