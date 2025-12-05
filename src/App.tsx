@@ -1,10 +1,12 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import { CssBaseline, Box, Container, Typography } from '@mui/material';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { CssBaseline } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { theme } from './theme';
 import { Layout } from './components/layout';
+import HomePage from './pages/HomePage';
+import ProjectsPage from './pages/ProjectsPage';
 import { ErrorBoundary } from './components/common';
 
 // Create TanStack Query client
@@ -30,25 +32,10 @@ function App(): React.ReactElement {
           <ErrorBoundary>
             <CssBaseline />
             <Layout title="Diogo Bastos" subtitle="Full-Stack Developer & Design Enthusiast">
-              <Container maxWidth="lg" sx={{ paddingY: '4rem' }}>
-                <Box sx={{ textAlign: 'center' }}>
-                  <Typography variant="h3" gutterBottom sx={{ fontWeight: 600 }}>
-                    Welcome to My Portfolio
-                  </Typography>
-                  <Typography variant="h6" color="text.secondary" paragraph>
-                    Explore my projects, experience, and skills below.
-                  </Typography>
-                  <Typography
-                    variant="body1"
-                    sx={{ marginTop: '2rem', maxWidth: '600px', margin: '2rem auto' }}
-                  >
-                    This portfolio showcases my work as a full-stack developer with expertise in
-                    React, TypeScript, Material-UI, and modern web technologies. Currently, I'm
-                    building scalable applications and exploring innovative solutions to complex
-                    problems.
-                  </Typography>
-                </Box>
-              </Container>
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/projects" element={<ProjectsPage />} />
+              </Routes>
             </Layout>
           </ErrorBoundary>
         </QueryClientProvider>

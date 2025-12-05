@@ -1,4 +1,4 @@
-import { Project, Technology } from '../types';
+import { Project, Technology, ProjectArtwork } from '../types';
 
 /**
  * Project Service
@@ -6,8 +6,33 @@ import { Project, Technology } from '../types';
  * Currently uses static fixture data; can be replaced with API calls
  */
 
-// Import fixture data
-import projectsFixture from '../tests/fixtures/projects';
+// Import fixture data (dev-time fixtures)
+import { mockProjects } from '../../tests/fixtures/projects';
+
+// Map test fixtures (simple shape) to internal Project type
+const mapFixtureToProject = (p: any): Project => {
+  const images: ProjectArtwork[] = p.imageUrl
+    ? [{ url: p.imageUrl }]
+    : p.artwork?.filename
+    ? [{ url: p.artwork.filename }]
+    : [];
+  const technologies: Technology[] = Array.isArray(p.technologies)
+    ? p.technologies.map((name: string) => ({ name }))
+    : [];
+  return {
+    id: p.id,
+    title: p.name || p.title || 'Untitled',
+    description: p.description || p.brief || '',
+    shortDescription: p.brief,
+    technologies,
+    images,
+    thumbnailUrl: p.imageUrl,
+    demoUrl: p.demoUrl,
+    githubUrl: p.githubUrl,
+    featured: !!p.featured,
+    tags: p.tags || [],
+  } as Project;
+};
 
 class ProjectService {
   /**
@@ -16,7 +41,7 @@ class ProjectService {
   async getProjects(): Promise<Project[]> {
     // Simulate API call delay
     await new Promise(resolve => setTimeout(resolve, 300));
-    return projectsFixture;
+    return mockProjects.map(mapFixtureToProject);
   }
 
   /**
@@ -24,7 +49,8 @@ class ProjectService {
    */
   async getProjectById(id: string): Promise<Project | null> {
     await new Promise(resolve => setTimeout(resolve, 200));
-    return projectsFixture.find(p => p.id === id) || null;
+    const found = mockProjects.find((p: any) => p.id === id);
+    return found ? mapFixtureToProject(found) : null;
   }
 
   /**
@@ -32,7 +58,7 @@ class ProjectService {
    */
   async getFeaturedProjects(): Promise<Project[]> {
     await new Promise(resolve => setTimeout(resolve, 250));
-    return projectsFixture.filter(p => p.featured);
+    return mockProjects.filter((p: any) => p.featured).map(mapFixtureToProject);
   }
 
   /**
@@ -40,9 +66,10 @@ class ProjectService {
    */
   async getProjectsByTechnology(technology: string): Promise<Project[]> {
     await new Promise(resolve => setTimeout(resolve, 250));
-    return projectsFixture.filter(p =>
-      p.technologies.some(t => t.name.toLowerCase().includes(technology.toLowerCase()))
-    );
+    const tech = technology.toLowerCase();
+    return mockProjects
+      .filter((p: any) => p.technologies?.some((t: string) => t.toLowerCase().includes(tech)))
+      .map(mapFixtureToProject);
   }
 
   /**
@@ -50,9 +77,10 @@ class ProjectService {
    */
   async getProjectsByTag(tag: string): Promise<Project[]> {
     await new Promise(resolve => setTimeout(resolve, 250));
-    return projectsFixture.filter(p =>
-      p.tags?.some(t => t.toLowerCase() === tag.toLowerCase())
-    );
+    const tg = tag.toLowerCase();
+    return mockProjects
+      .filter((p: any) => p.tags?.some((t: string) => t.toLowerCase() === tg))
+      .map(mapFixtureToProject);
   }
 
   /**
@@ -64,16 +92,17 @@ class ProjectService {
     const project = await this.getProjectById(projectId);
     if (!project) return [];
 
-    const related = projectsFixture
-      .filter(p => p.id !== projectId)
-      .filter(p => {
-        const sameTag = p.tags?.some(t => project.tags?.includes(t));
-        const sameTech = p.technologies.some(t =>
-          project.technologies.some(pt => pt.name === t.name)
+    const related = mockProjects
+      .filter((p: any) => p.id !== projectId)
+      .filter((p: any) => {
+        const sameTag = p.tags?.some((t: string) => project.tags?.includes(t));
+        const sameTech = p.technologies?.some((t: string) =>
+          project.technologies.some((pt) => pt.name === t)
         );
         return sameTag || sameTech;
       })
-      .slice(0, limit);
+      .slice(0, limit)
+      .map(mapFixtureToProject);
 
     return related;
   }
@@ -86,10 +115,10 @@ class ProjectService {
     
     const techSet = new Map<string, Technology>();
     
-    projectsFixture.forEach(project => {
-      project.technologies.forEach(tech => {
-        if (!techSet.has(tech.name)) {
-          techSet.set(tech.name, tech);
+    mockProjects.forEach((project: any) => {
+      (project.technologies || []).forEach((name: string) => {
+        if (!techSet.has(name)) {
+          techSet.set(name, { name });
         }
       });
     });
@@ -104,12 +133,14 @@ class ProjectService {
     await new Promise(resolve => setTimeout(resolve, 300));
     
     const lowerQuery = query.toLowerCase();
-    return projectsFixture.filter(p =>
-      p.title.toLowerCase().includes(lowerQuery) ||
-      p.description.toLowerCase().includes(lowerQuery) ||
-      p.shortDescription?.toLowerCase().includes(lowerQuery) ||
-      p.tags?.some(t => t.toLowerCase().includes(lowerQuery))
-    );
+    return mockProjects
+      .filter((p: any) =>
+        (p.name || '').toLowerCase().includes(lowerQuery) ||
+        (p.description || '').toLowerCase().includes(lowerQuery) ||
+        (p.brief || '').toLowerCase().includes(lowerQuery) ||
+        p.tags?.some((t: string) => t.toLowerCase().includes(lowerQuery))
+      )
+      .map(mapFixtureToProject);
   }
 
   /**
@@ -117,7 +148,9 @@ class ProjectService {
    */
   async getProjectsByStatus(status: 'completed' | 'in-progress' | 'archived'): Promise<Project[]> {
     await new Promise(resolve => setTimeout(resolve, 250));
-    return projectsFixture.filter(p => p.status === status);
+    return mockProjects
+      .filter((p: any) => p.status === status)
+      .map(mapFixtureToProject);
   }
 }
 

@@ -6,8 +6,8 @@ import { Resume, Experience, Education, SkillCategory, Technology } from '../typ
  * Currently uses static fixture data; can be replaced with API calls
  */
 
-// Import fixture data
-import resumeFixture from '../tests/fixtures/resume';
+// Import fixture data (dev-time fixtures)
+import { mockResume } from '../../tests/fixtures/resume';
 
 class ResumeService {
   /**
@@ -16,7 +16,7 @@ class ResumeService {
   async getResume(): Promise<Resume> {
     // Simulate API call delay
     await new Promise(resolve => setTimeout(resolve, 300));
-    return resumeFixture;
+    return mockResume as unknown as Resume;
   }
 
   /**
@@ -25,10 +25,10 @@ class ResumeService {
   async getResumeProfile() {
     await new Promise(resolve => setTimeout(resolve, 200));
     return {
-      name: resumeFixture.name,
-      title: resumeFixture.title,
-      bio: resumeFixture.bio,
-      avatar: resumeFixture.avatar,
+      name: (mockResume as any).profile?.name,
+      title: (mockResume as any).profile?.title,
+      bio: (mockResume as any).profile?.summary,
+      avatar: (mockResume as any).profile?.avatar,
     };
   }
 
@@ -37,7 +37,7 @@ class ResumeService {
    */
   async getExperience(): Promise<Experience[]> {
     await new Promise(resolve => setTimeout(resolve, 200));
-    return resumeFixture.experience;
+    return (mockResume as any).experience as Experience[];
   }
 
   /**
@@ -45,8 +45,9 @@ class ResumeService {
    */
   async getCurrentExperience(): Promise<Experience | null> {
     await new Promise(resolve => setTimeout(resolve, 200));
-    const current = resumeFixture.experience.find(e => e.current);
-    return current || resumeFixture.experience[0] || null;
+    const exp = (mockResume as any).experience as any[];
+    const current = exp.find(e => e.current);
+    return (current || exp[0] || null) as any;
   }
 
   /**
@@ -54,7 +55,7 @@ class ResumeService {
    */
   async getEducation(): Promise<Education[]> {
     await new Promise(resolve => setTimeout(resolve, 200));
-    return resumeFixture.education;
+    return (mockResume as any).education as Education[];
   }
 
   /**
@@ -62,7 +63,11 @@ class ResumeService {
    */
   async getSkills(): Promise<SkillCategory[]> {
     await new Promise(resolve => setTimeout(resolve, 200));
-    return resumeFixture.skills;
+    const skills = (mockResume as any).skills?.map((s: any) => ({
+      name: s.category,
+      skills: (s.skills || []).map((name: string) => ({ name }))
+    })) as any;
+    return skills as SkillCategory[];
   }
 
   /**
@@ -70,10 +75,11 @@ class ResumeService {
    */
   async getSkillsByCategory(category: string): Promise<Technology[]> {
     await new Promise(resolve => setTimeout(resolve, 200));
-    const skillCategory = resumeFixture.skills.find(
-      s => s.name.toLowerCase() === category.toLowerCase()
+    const skills = (mockResume as any).skills as any[];
+    const skillCategory = skills.find(
+      (s) => (s.category || '').toLowerCase() === category.toLowerCase()
     );
-    return skillCategory?.skills || [];
+    return (skillCategory?.skills || []).map((name: string) => ({ name })) as Technology[];
   }
 
   /**
@@ -85,19 +91,19 @@ class ResumeService {
     const techSet = new Map<string, Technology>();
     
     // Collect from skills
-    resumeFixture.skills.forEach(category => {
-      category.skills.forEach(tech => {
-        if (!techSet.has(tech.name)) {
-          techSet.set(tech.name, tech);
+    (mockResume as any).skills.forEach((category: any) => {
+      category.skills.forEach((name: string) => {
+        if (!techSet.has(name)) {
+          techSet.set(name, { name });
         }
       });
     });
 
     // Collect from experience
-    resumeFixture.experience.forEach(exp => {
-      exp.technologies?.forEach(tech => {
-        if (!techSet.has(tech.name)) {
-          techSet.set(tech.name, tech);
+    (mockResume as any).experience.forEach((exp: any) => {
+      (exp.technologies || []).forEach((name: string) => {
+        if (!techSet.has(name)) {
+          techSet.set(name, { name });
         }
       });
     });
@@ -110,7 +116,7 @@ class ResumeService {
    */
   async getContact() {
     await new Promise(resolve => setTimeout(resolve, 200));
-    return resumeFixture.contact;
+    return (mockResume as any).contact;
   }
 
   /**
@@ -118,7 +124,7 @@ class ResumeService {
    */
   async getSocialLinks() {
     await new Promise(resolve => setTimeout(resolve, 150));
-    const { github, linkedin, twitter, email } = resumeFixture.contact;
+    const { github, linkedin, twitter, email } = (mockResume as any).contact || {};
     return {
       github: github ? { url: github, label: 'GitHub' } : null,
       linkedin: linkedin ? { url: linkedin, label: 'LinkedIn' } : null,
@@ -132,7 +138,7 @@ class ResumeService {
    */
   async getCertifications() {
     await new Promise(resolve => setTimeout(resolve, 150));
-    return resumeFixture.certifications || [];
+    return (mockResume as any).certifications || [];
   }
 
   /**
@@ -140,7 +146,7 @@ class ResumeService {
    */
   async getLanguages() {
     await new Promise(resolve => setTimeout(resolve, 150));
-    return resumeFixture.languages || [];
+    return (mockResume as any).languages || [];
   }
 
   /**
@@ -149,9 +155,11 @@ class ResumeService {
   async getTimeline() {
     await new Promise(resolve => setTimeout(resolve, 250));
     
+    const exp = (mockResume as any).experience as any[];
+    const edu = (mockResume as any).education as any[];
     const startYear = Math.min(
-      ...resumeFixture.experience.map(e => parseInt(e.startDate.split('-')[0])),
-      ...resumeFixture.education.map(e => parseInt(e.graduationDate.split('-')[0]))
+      ...exp.map(e => parseInt((e.startDate || '0').split('-')[0])),
+      ...edu.map(e => parseInt((e.graduationDate || e.year || '0').split('-')[0]))
     );
     
     const endYear = new Date().getFullYear();
@@ -162,12 +170,12 @@ class ResumeService {
       startYear,
       currentYear: endYear,
       milestones: [
-        ...resumeFixture.education.map(e => ({
-          year: parseInt(e.graduationDate.split('-')[0]),
-          title: `${e.degree} in ${e.field}`,
+        ...edu.map((e: any) => ({
+          year: parseInt((e.graduationDate || e.year).split('-')[0]),
+          title: `${e.degree} in ${e.field || e.degree}`,
           type: 'education',
         })),
-        ...resumeFixture.experience.map(e => ({
+        ...exp.map((e: any) => ({
           year: parseInt(e.startDate.split('-')[0]),
           title: `${e.title} at ${e.company}`,
           type: 'experience',
