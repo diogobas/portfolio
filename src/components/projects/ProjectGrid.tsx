@@ -8,6 +8,7 @@ import { LoadingSpinner, ErrorMessage } from '@/components/common';
 interface ProjectGridProps {
   projects: Project[];
   onProjectClick?: (projectId: string) => void;
+  onDemoClick?: (projectId: string) => void;
   isLoading?: boolean;
   error?: Error | null;
   onRetry?: () => void;
@@ -68,6 +69,7 @@ const itemVariants = {
 export const ProjectGrid: React.FC<ProjectGridProps> = ({
   projects,
   onProjectClick,
+  onDemoClick,
   isLoading = false,
   error = null,
   onRetry,
@@ -187,6 +189,7 @@ export const ProjectGrid: React.FC<ProjectGridProps> = ({
           <ProjectCard
             project={project}
             onCardClick={onProjectClick}
+            onDemoClick={onDemoClick}
             showArtwork={showArtwork}
             sx={{
               height: '100%',

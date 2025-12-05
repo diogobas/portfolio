@@ -21,6 +21,7 @@ interface ProjectCardProps {
   variant?: 'default' | 'compact';
   className?: string;
   sx?: SxProps<Theme>;
+  onDemoClick?: (projectId: string) => void;
 }
 
 const MotionCard = motion(Card);
@@ -49,6 +50,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   variant = 'default',
   className,
   sx,
+  onDemoClick,
 }) => {
   const [isHovering, setIsHovering] = useState(false);
 
@@ -85,6 +87,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
       transition={{ duration: 0.3 }}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
+      onClick={handleCardClick}
       sx={[
         {
           height: '100%',
@@ -211,16 +214,40 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
 
       {/* Action Buttons */}
       <CardActions>
-        <Button
-          size="small"
-          onClick={handleCardClick}
-          sx={{
-            textTransform: 'none',
-            fontWeight: 600,
-          }}
-        >
-          View Details
-        </Button>
+        {/* Teacher Success Pathways: open demo modal instead of external link */}
+        {project.id === 'teacher-pathways' && (
+          <Button
+            size="small"
+            onClick={(e) => {
+              e.stopPropagation();
+              onDemoClick?.(project.id);
+            }}
+            sx={{
+              textTransform: 'none',
+              fontWeight: 600,
+            }}
+          >
+            View Demo
+          </Button>
+        )}
+
+        {/* Default: open external link in new tab */}
+        {project.id !== 'teacher-pathways' && project.demoUrl && (
+          <Button
+            size="small"
+            component="a"
+            href={project.demoUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
+            sx={{
+              textTransform: 'none',
+              fontWeight: 600,
+            }}
+          >
+            View More
+          </Button>
+        )}
       </CardActions>
     </MotionCard>
   );

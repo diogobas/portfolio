@@ -17,6 +17,14 @@ const externalThumbs: Record<string, string> = {
   'teacher-pathways': '/images/projects/teacherPathway2.png',
 };
 
+// External reference/demo links per project
+const externalLinks: Record<string, string> = {
+  'classcraft': 'https://www.hmhco.com/programs/classcraft#hmh-into-reading--classcraft-tabs-default-1',
+  'session-organizer': 'https://www.hmhco.com/programs/classcraft#hmh-into-reading--classcraft-tabs-default-1',
+  'coachly': 'https://www.hmhco.com/programs/coachly',
+  'teacher-pathways': 'https://neonbytes.ca/elibaldo/#HMHtsp',
+};
+
 // Map test fixtures (simple shape) to internal Project type
 const mapFixtureToProject = (p: any): Project => {
   const overrideThumb = externalThumbs[p.id as string];
@@ -33,7 +41,7 @@ const mapFixtureToProject = (p: any): Project => {
     technologies,
     images,
     thumbnailUrl: baseThumb,
-    demoUrl: p.demoUrl,
+    demoUrl: externalLinks[p.id as string] || p.demoUrl,
     githubUrl: p.githubUrl,
     featured: !!p.featured,
     tags: p.tags || [],
