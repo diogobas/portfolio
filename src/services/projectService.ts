@@ -9,13 +9,19 @@ import { Project, Technology, ProjectArtwork } from '../types';
 // Import fixture data (dev-time fixtures)
 import { mockProjects } from '../../tests/fixtures/projects';
 
+// Local thumbnail overrides (served from /public)
+const externalThumbs: Record<string, string> = {
+  'classcraft': '/images/projects/classcraft.jpg',
+  'session-organizer': '/images/projects/SessionOrganizer.png',
+  'coachly': '/images/projects/coachly.png',
+  'teacher-pathways': '/images/projects/teacherPathway2.png',
+};
+
 // Map test fixtures (simple shape) to internal Project type
 const mapFixtureToProject = (p: any): Project => {
-  const images: ProjectArtwork[] = p.imageUrl
-    ? [{ url: p.imageUrl }]
-    : p.artwork?.filename
-    ? [{ url: p.artwork.filename }]
-    : [];
+  const overrideThumb = externalThumbs[p.id as string];
+  const baseThumb = overrideThumb || p.imageUrl || p.artwork?.filename;
+  const images: ProjectArtwork[] = baseThumb ? [{ url: baseThumb }] : [];
   const technologies: Technology[] = Array.isArray(p.technologies)
     ? p.technologies.map((name: string) => ({ name }))
     : [];
@@ -26,7 +32,7 @@ const mapFixtureToProject = (p: any): Project => {
     shortDescription: p.brief,
     technologies,
     images,
-    thumbnailUrl: p.imageUrl,
+    thumbnailUrl: baseThumb,
     demoUrl: p.demoUrl,
     githubUrl: p.githubUrl,
     featured: !!p.featured,

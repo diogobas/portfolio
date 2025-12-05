@@ -5,5 +5,6 @@ export { ProjectHeader } from './ProjectHeader';
 export { ProjectLinks } from './ProjectLinks';
 export { ProjectDescription } from './ProjectDescription';
 export { RelatedProjects } from './RelatedProjects';
+export { ProjectDetailModal } from './ProjectDetailModal';
 
 export type { Project as ProjectType } from '@/types';

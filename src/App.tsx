@@ -7,6 +7,7 @@ import { theme } from './theme';
 import { Layout } from './components/layout';
 import HomePage from './pages/HomePage';
 import ProjectsPage from './pages/ProjectsPage';
+import ProjectDetailPage from './pages/ProjectDetailPage';
 import { ErrorBoundary } from './components/common';
 
 // Create TanStack Query client
@@ -31,10 +32,11 @@ function App(): React.ReactElement {
         <QueryClientProvider client={queryClient}>
           <ErrorBoundary>
             <CssBaseline />
-            <Layout title="Diogo Bastos" subtitle="Full-Stack Developer & Design Enthusiast">
+            <Layout title="Diogo Bastos" subtitle="Full-Stack Developer">
               <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/projects" element={<ProjectsPage />} />
+                <Route path="/project/:id" element={<ProjectDetailPage />} />
               </Routes>
             </Layout>
           </ErrorBoundary>
