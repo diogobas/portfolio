@@ -36,7 +36,6 @@ function App(): React.ReactElement {
               <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/projects" element={<ProjectsPage />} />
-                <Route path="/project/:id" element={<ProjectDetailPage />} />
               </Routes>
             </Layout>
           </ErrorBoundary>
