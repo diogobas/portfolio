@@ -1,7 +1,9 @@
 ---
 import ExperienceList from '../components/ExperienceList.astro';
+import ProjectPreview from '../components/ProjectPreview.astro';
 import SiteLayout from '../layouts/SiteLayout.astro';
 import { experiences, profile, socialLinks } from '../data/profile';
+import { featuredProjects } from '../data/projects';
 ---
 
 <SiteLayout title="Diogo Bastos | Senior Full-Stack Software Engineer">
@@ -17,6 +19,7 @@ import { experiences, profile, socialLinks } from '../data/profile';
       <nav class="section-nav" aria-label="In-page navigation">
         <a href="#about">About</a>
         <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
         <a href="#contact">Contact</a>
       </nav>
 
@@ -34,7 +37,7 @@ import { experiences, profile, socialLinks } from '../data/profile';
       </ul>
     </header>
 
-    <main class="content">
+    <main id="main-content" class="content">
       <section id="about" aria-labelledby="about-title">
         <p class="section-kicker">01</p>
         <h1 id="about-title">About</h1>
@@ -63,8 +66,19 @@ import { experiences, profile, socialLinks } from '../data/profile';
         <ExperienceList experiences={experiences} />
       </section>
 
-      <section id="contact" aria-labelledby="contact-title" class="contact-section">
+      <section id="projects" aria-labelledby="projects-title">
         <p class="section-kicker">03</p>
+        <div class="section-heading-row">
+          <h2 id="projects-title">Featured projects</h2>
+          <a href="/projects/">View archive <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="featured-projects">
+          {featuredProjects.map((project) => <ProjectPreview project={project} />)}
+        </div>
+      </section>
+
+      <section id="contact" aria-labelledby="contact-title" class="contact-section">
+        <p class="section-kicker">04</p>
         <h2 id="contact-title">Let’s connect</h2>
         <div class="prose">
           <p>
