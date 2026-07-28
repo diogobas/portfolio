@@ -4,6 +4,7 @@
   "private": true,
   "description": "Professional portfolio for Diogo Bastos.",
   "type": "module",
+  "packageManager": "pnpm@10.27.0",
   "scripts": {
     "dev": "ASTRO_DEV_BACKGROUND=false ASTRO_TELEMETRY_DISABLED=1 astro dev",
     "build": "ASTRO_TELEMETRY_DISABLED=1 astro build",
