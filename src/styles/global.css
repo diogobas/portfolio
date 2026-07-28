@@ -274,6 +274,282 @@ h2 {
   max-width: 38rem;
 }
 
+.section-heading-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.section-heading-row h2 {
+  margin-bottom: 0;
+}
+
+.section-heading-row > a,
+.archive-card a {
+  color: #5eead4;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.section-heading-row > a:hover,
+.archive-card a:hover {
+  color: #ccfbf1;
+}
+
+.featured-projects {
+  display: grid;
+  gap: 1rem;
+}
+
+.project-preview {
+  display: grid;
+  grid-template-columns: 5.25rem minmax(0, 1fr);
+  gap: 1.1rem;
+  padding: 1.2rem;
+  border: 1px solid transparent;
+  border-radius: 0.6rem;
+  transition: background 150ms ease, border-color 150ms ease;
+}
+
+.project-preview:hover {
+  border-color: rgb(94 234 212 / 18%);
+  background: rgb(30 41 59 / 55%);
+}
+
+.project-visual,
+.archive-card__visual {
+  display: grid;
+  min-width: 0;
+  place-items: center;
+  border: 1px solid rgb(148 163 184 / 18%);
+  border-radius: 0.45rem;
+  color: rgb(248 250 252 / 82%);
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.project-visual {
+  min-height: 5.25rem;
+}
+
+.project-visual--career {
+  background:
+    linear-gradient(135deg, transparent 45%, rgb(94 234 212 / 45%) 46% 53%, transparent 54%),
+    linear-gradient(30deg, #123e44, #172554);
+}
+
+.project-visual--classcraft {
+  background:
+    radial-gradient(circle at 70% 28%, rgb(251 191 36 / 70%) 0 7%, transparent 8%),
+    linear-gradient(145deg, #35245d, #0f2c4d);
+}
+
+.project-visual--coachly {
+  background:
+    linear-gradient(90deg, transparent 44%, rgb(167 243 208 / 62%) 45% 55%, transparent 56%),
+    linear-gradient(135deg, #134e4a, #1e293b);
+}
+
+.project-visual--learning {
+  background:
+    repeating-linear-gradient(135deg, rgb(94 234 212 / 16%) 0 0.3rem, transparent 0.3rem 0.8rem),
+    linear-gradient(135deg, #102b48, #1e293b);
+}
+
+.project-preview__body {
+  min-width: 0;
+}
+
+.project-preview__eyebrow,
+.archive-card__eyebrow {
+  margin-bottom: 0.5rem;
+  color: #73859f;
+  font-size: 0.68rem;
+  font-weight: 750;
+  letter-spacing: 0.08em;
+  line-height: 1.45;
+  text-transform: uppercase;
+}
+
+.project-preview h3,
+.archive-card h2 {
+  margin-bottom: 0.6rem;
+  color: #e7edf8;
+  font-size: 1rem;
+}
+
+.project-preview__body > p:not(.project-preview__eyebrow),
+.archive-card > div:last-child > p {
+  color: #93a4bd;
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+.project-preview .technology-list {
+  margin-top: 1rem;
+}
+
+.project-preview__link {
+  display: inline-block;
+  margin-top: 1.1rem;
+  color: #5eead4;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.project-preview__link:hover {
+  color: #ccfbf1;
+}
+
+.archive-page {
+  width: min(100% - 3rem, 70rem);
+  min-height: 100vh;
+  padding: 4rem 0 8rem;
+  margin: 0 auto;
+}
+
+.archive-back-link {
+  display: inline-block;
+  margin-bottom: 5rem;
+  color: #b7c4d8;
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.archive-back-link:hover {
+  color: #5eead4;
+}
+
+.archive-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+.archive-heading h1 {
+  max-width: 30rem;
+  margin-bottom: 0;
+}
+
+.archive-heading > p {
+  margin: 0 0 0.45rem;
+  color: #73859f;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.project-filters {
+  display: grid;
+  gap: 1rem;
+  padding: 1.25rem;
+  margin-bottom: 2.5rem;
+  border: 1px solid #26354d;
+  border-radius: 0.6rem;
+  background: rgb(15 23 42 / 62%);
+}
+
+.project-filters label {
+  display: grid;
+  gap: 0.5rem;
+  color: #b7c4d8;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.project-filters input,
+.project-filters select {
+  width: 100%;
+  min-height: 2.7rem;
+  border: 1px solid #3a4a63;
+  border-radius: 0.35rem;
+  outline: none;
+  background: #101a2d;
+  color: #e7edf8;
+  font: inherit;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.project-filters input {
+  padding: 0 0.8rem;
+}
+
+.project-filters select {
+  padding: 0 0.55rem;
+}
+
+.project-filters input:focus,
+.project-filters select:focus {
+  border-color: #5eead4;
+}
+
+.project-filters button {
+  width: fit-content;
+  align-self: end;
+  min-height: 2.7rem;
+  padding: 0 0.9rem;
+  border: 1px solid #3a4a63;
+  border-radius: 0.35rem;
+  background: transparent;
+  color: #b7c4d8;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.project-filters button:hover {
+  border-color: #5eead4;
+  color: #5eead4;
+}
+
+.project-archive-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.archive-card {
+  display: grid;
+  gap: 1.25rem;
+  padding: 1.25rem;
+  border: 1px solid #26354d;
+  border-radius: 0.6rem;
+  background: rgb(15 23 42 / 45%);
+}
+
+.archive-card__visual {
+  min-height: 10rem;
+}
+
+.archive-card h2 {
+  font-size: 1.2rem;
+}
+
+.archive-card__contribution {
+  margin-top: 1rem;
+}
+
+.archive-card .technology-list {
+  margin: 1rem 0;
+}
+
+.empty-state {
+  padding: 2rem;
+  border: 1px dashed #3a4a63;
+  border-radius: 0.6rem;
+  color: #9bacc5;
+  text-align: center;
+}
+
 .text-link {
   display: inline-block;
   margin-top: 0.5rem;
@@ -318,6 +594,16 @@ h2 {
   .experience-item {
     grid-template-columns: 7rem minmax(0, 1fr);
     gap: 1.25rem;
+  }
+
+  .project-filters {
+    grid-template-columns: minmax(14rem, 1.5fr) minmax(10rem, 1fr) minmax(10rem, 1fr) auto;
+    align-items: end;
+  }
+
+  .archive-card {
+    grid-template-columns: 12rem minmax(0, 1fr);
+    padding: 1.5rem;
   }
 }
 

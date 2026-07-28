@@ -1,0 +1,27 @@
+---
+import type { Project } from '../data/projects';
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+const primaryLink = project.links[0];
+---
+
+<article class="project-preview">
+  <div class:list={['project-visual', `project-visual--${project.visual}`]} aria-hidden="true">
+    <span>{project.title.slice(0, 1)}</span>
+  </div>
+  <div class="project-preview__body">
+    <p class="project-preview__eyebrow">{project.period} · {project.company}</p>
+    <h3>{project.title}</h3>
+    <p>{project.summary}</p>
+    <ul class="technology-list" aria-label={`Technologies used in ${project.title}`}>
+      {project.technologies.map((technology) => <li>{technology}</li>)}
+    </ul>
+    <a class="project-preview__link" href={primaryLink.href} target="_blank" rel="noreferrer">
+      {primaryLink.label}<span aria-hidden="true"> ↗</span>
+    </a>
+  </div>
+</article>

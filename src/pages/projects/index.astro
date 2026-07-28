@@ -1,0 +1,12 @@
+---
+import ProjectArchive from '../../components/ProjectArchive';
+import { projects } from '../../data/projects';
+import SiteLayout from '../../layouts/SiteLayout.astro';
+---
+
+<SiteLayout title="Projects | Diogo Bastos" description="Selected learning technology projects by Diogo Bastos.">
+  <main id="main-content" class="archive-page">
+    <a class="archive-back-link" href="/">← Back to home</a>
+    <ProjectArchive client:load projects={projects} />
+  </main>
+</SiteLayout>
