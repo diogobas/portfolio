@@ -1,0 +1,36 @@
+---
+interface Experience {
+  period: string;
+  role: string;
+  company: string;
+  summary: string;
+  technologies: readonly string[];
+}
+
+interface Props {
+  experiences: readonly Experience[];
+}
+
+const { experiences } = Astro.props;
+---
+
+<ol class="experience-list">
+  {
+    experiences.map((experience) => (
+      <li class="experience-item">
+        <p class="experience-period">{experience.period}</p>
+        <article>
+          <h3>
+            {experience.role}
+            <span aria-hidden="true"> · </span>
+            <span class="experience-company">{experience.company}</span>
+          </h3>
+          <p>{experience.summary}</p>
+          <ul class="technology-list" aria-label={`Technologies used at ${experience.company}`}>
+            {experience.technologies.map((technology) => <li>{technology}</li>)}
+          </ul>
+        </article>
+      </li>
+    ))
+  }
+</ol>
