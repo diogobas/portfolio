@@ -14,6 +14,7 @@ export interface Project {
   links: readonly ProjectLink[];
   featured: boolean;
   visual: 'career' | 'classcraft' | 'coachly' | 'learning';
+  image: string;
 }
 
 export const projects = [
@@ -30,6 +31,7 @@ export const projects = [
     links: [{ label: 'View Career Ready', href: 'https://www.pearson.com/en-us/career-ready.html' }],
     featured: true,
     visual: 'career',
+    image: '/images/projects/career-ready.jpg',
   },
   {
     slug: 'classcraft',
@@ -44,6 +46,7 @@ export const projects = [
     links: [{ label: 'View Classcraft', href: 'https://www.hmhco.com/programs/classcraft' }],
     featured: true,
     visual: 'classcraft',
+    image: '/images/projects/classcraft.jpg',
   },
   {
     slug: 'session-organizer',
@@ -63,6 +66,7 @@ export const projects = [
     ],
     featured: true,
     visual: 'classcraft',
+    image: '/images/projects/classcraft.jpg',
   },
   {
     slug: 'coachly',
@@ -77,6 +81,7 @@ export const projects = [
     links: [{ label: 'View Coachly', href: 'https://www.hmhco.com/programs/coachly' }],
     featured: true,
     visual: 'coachly',
+    image: '/images/projects/coachly.jpg',
   },
   {
     slug: 'ottolearn',
@@ -91,6 +96,7 @@ export const projects = [
     links: [{ label: 'View OttoLearn', href: 'https://www.ottolearn.com/' }],
     featured: true,
     visual: 'learning',
+    image: '/images/projects/learning.jpg',
   },
   {
     slug: 'teacher-success-pathways',
@@ -110,6 +116,7 @@ export const projects = [
     ],
     featured: false,
     visual: 'learning',
+    image: '/images/projects/learning.jpg',
   },
 ] as const satisfies readonly Project[];
 

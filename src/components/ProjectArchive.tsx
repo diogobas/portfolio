@@ -121,8 +121,8 @@ export default function ProjectArchive({ projects }: Props) {
 
             return (
               <article className="archive-card" key={project.slug}>
-                <div className={`archive-card__visual project-visual--${project.visual}`} aria-hidden="true">
-                  <span>{project.title.slice(0, 1)}</span>
+                <div className="archive-card__visual">
+                  <img src={project.image} alt="" loading="lazy" decoding="async" />
                 </div>
                 <div>
                   <p className="archive-card__eyebrow">{project.period} · {project.company}</p>

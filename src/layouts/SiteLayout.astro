@@ -4,12 +4,26 @@ import '../styles/global.css';
 interface Props {
   title: string;
   description?: string;
+  path?: string;
 }
 
 const {
   title,
   description = 'Professional portfolio of Diogo Bastos, a senior full-stack software engineer.',
+  path = '/',
 } = Astro.props;
+
+const siteUrl = import.meta.env.PUBLIC_SITE_URL;
+const pageUrl = siteUrl ? new URL(path, siteUrl).href : undefined;
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Diogo Bastos',
+  jobTitle: 'Senior Full-Stack Software Engineer',
+  email: 'mailto:diogovvb@gmail.com',
+  url: pageUrl,
+  sameAs: ['https://www.linkedin.com/in/diogo-bastos/', 'https://github.com/diogobas'],
+};
 ---
 
 <!doctype html>
@@ -18,6 +32,15 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#0b1120" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Diogo Bastos" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {pageUrl && <link rel="canonical" href={pageUrl} />}
+    {pageUrl && <meta property="og:url" content={pageUrl} />}
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(personSchema)} />
     <title>{title}</title>
   </head>
   <body>

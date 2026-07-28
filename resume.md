@@ -1,6 +1,5 @@
 # Diogo Bastos  
 **Senior Software Developer**  
-+1 (514) 207-6799  
 diogovvb@gmail.com  
 https://linkedin.com/in/diogo-bastos  
 
@@ -106,4 +105,3 @@ Dexco is a leading Brazilian wood panel producer and the 8th largest globally.
 - React Web App Developer  
 - MCSD Web Application  
 - Training in: AngularJS, Android, iOS, ITIL Foundation, Java Web  
-

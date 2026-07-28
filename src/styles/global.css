@@ -321,42 +321,23 @@ h2 {
 
 .project-visual,
 .archive-card__visual {
-  display: grid;
+  overflow: hidden;
   min-width: 0;
-  place-items: center;
   border: 1px solid rgb(148 163 184 / 18%);
   border-radius: 0.45rem;
-  color: rgb(248 250 252 / 82%);
-  font-size: 1.5rem;
-  font-weight: 800;
+  background: #101a2d;
 }
 
 .project-visual {
   min-height: 5.25rem;
 }
 
-.project-visual--career {
-  background:
-    linear-gradient(135deg, transparent 45%, rgb(94 234 212 / 45%) 46% 53%, transparent 54%),
-    linear-gradient(30deg, #123e44, #172554);
-}
-
-.project-visual--classcraft {
-  background:
-    radial-gradient(circle at 70% 28%, rgb(251 191 36 / 70%) 0 7%, transparent 8%),
-    linear-gradient(145deg, #35245d, #0f2c4d);
-}
-
-.project-visual--coachly {
-  background:
-    linear-gradient(90deg, transparent 44%, rgb(167 243 208 / 62%) 45% 55%, transparent 56%),
-    linear-gradient(135deg, #134e4a, #1e293b);
-}
-
-.project-visual--learning {
-  background:
-    repeating-linear-gradient(135deg, rgb(94 234 212 / 16%) 0 0.3rem, transparent 0.3rem 0.8rem),
-    linear-gradient(135deg, #102b48, #1e293b);
+.project-visual img,
+.archive-card__visual img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .project-preview__body {
@@ -403,6 +384,10 @@ h2 {
 
 .project-preview__link:hover {
   color: #ccfbf1;
+}
+
+.resume-link {
+  margin-top: 1.25rem;
 }
 
 .archive-page {
@@ -563,6 +548,91 @@ h2 {
   color: #ccfbf1;
 }
 
+.resume-page,
+.not-found-page {
+  width: min(100% - 3rem, 52rem);
+  min-height: 100vh;
+  padding: 4rem 0 8rem;
+  margin: 0 auto;
+}
+
+.resume-header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.resume-header h1 {
+  margin-bottom: 0.7rem;
+}
+
+.resume-header > div > p:last-child,
+.resume-section > p,
+.resume-experience-list li > p:last-child {
+  color: #9bacc5;
+  line-height: 1.75;
+}
+
+.resume-actions {
+  display: grid;
+  justify-items: end;
+  gap: 0.65rem;
+}
+
+.resume-actions .text-link {
+  margin-top: 0;
+  white-space: nowrap;
+}
+
+.resume-section + .resume-section {
+  margin-top: 3rem;
+}
+
+.resume-section h2 {
+  margin-bottom: 1rem;
+  font-size: 1.35rem;
+}
+
+.resume-experience-list {
+  display: grid;
+  gap: 1.75rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.resume-experience-list h3 {
+  margin-bottom: 0.55rem;
+  color: #e7edf8;
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+.resume-experience-list h3 span {
+  color: #5eead4;
+}
+
+.resume-contact ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 0;
+  margin: 1rem 0 0;
+  list-style: none;
+}
+
+.resume-contact a {
+  color: #5eead4;
+  font-weight: 700;
+}
+
+.not-found-page > p:not(.section-kicker) {
+  color: #9bacc5;
+  line-height: 1.7;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -604,6 +674,18 @@ h2 {
   .archive-card {
     grid-template-columns: 12rem minmax(0, 1fr);
     padding: 1.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .resume-header,
+  .archive-heading {
+    align-items: start;
+    flex-direction: column;
+  }
+
+  .resume-actions {
+    justify-items: start;
   }
 }
 

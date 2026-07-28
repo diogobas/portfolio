@@ -143,7 +143,6 @@ interface Contact {
   ],
   "contact": {
     "email": "diogovvb@gmail.com",
-    "phone": "+1 (514) 207-6799",
     "linkedin": "https://linkedin.com/in/diogo-bastos",
     "github": "https://github.com/diogobastos"
   }
@@ -367,7 +366,6 @@ interface ProjectArtwork {
   ],
   "contact": {
     "email": "diogovvb@gmail.com",
-    "phone": "+1 (514) 207-6799",
     "linkedin": "https://linkedin.com/in/diogo-bastos",
     "github": "https://github.com/diogobastos"
   }
