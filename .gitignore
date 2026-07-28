@@ -8,6 +8,7 @@ dist/
 build/
 .next/
 out/
+.astro/
 
 # Development
 .vscode/
@@ -81,6 +82,7 @@ ehthumbs.db
 # Playwright
 .auth/
 playwright-report/
+test-results/
 
 # Vite
 .vite/
