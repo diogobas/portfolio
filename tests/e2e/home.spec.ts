@@ -45,6 +45,22 @@ test('offers a sanitized public résumé', async ({ page }) => {
   await expect(page.locator('body')).not.toContainText(/\+\d[\d\s()-]{7,}/);
 });
 
+test('links to licenses and certifications without rendering them on the home page', async ({ page }) => {
+  await page.goto('/certifications/');
+
+  await expect(page.getByRole('heading', { name: 'Licenses & certifications' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Learning Kubernetes' })).toBeVisible();
+  await expect(page.getByText('Credential ID UC-G8YMB8HT')).toBeVisible();
+  await expect(page.locator('.certification-card')).toHaveCount(17);
+
+  await page.goto('/');
+  await expect(page.getByRole('link', { name: 'Certifications' })).toHaveAttribute(
+    'href',
+    '/certifications/',
+  );
+  await expect(page.locator('.certification-card')).toHaveCount(0);
+});
+
 test('links to the full career history without expanding the home timeline', async ({ page }) => {
   await page.goto('/');
   await expect(page.getByRole('link', { name: 'View full career' })).toHaveAttribute('href', '/experience/');
@@ -76,7 +92,7 @@ test('publishes crawlable metadata and a sitemap', async ({ page }) => {
   expect(await sitemap.text()).toContain('<loc>https://diogobastos.pages.dev/experience/</loc>');
 });
 
-for (const path of ['/', '/projects/', '/experience/', '/resume/']) {
+for (const path of ['/', '/projects/', '/experience/', '/resume/', '/certifications/']) {
   test(`has no automatically detectable accessibility violations on ${path}`, async ({ page }) => {
     await page.goto(path);
 

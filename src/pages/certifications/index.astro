@@ -1,0 +1,41 @@
+---
+import { certifications } from '../../data/certifications';
+import SiteLayout from '../../layouts/SiteLayout.astro';
+---
+
+<SiteLayout
+  title="Licenses & Certifications | Diogo Bastos"
+  description="Professional licenses and certifications earned by Diogo Bastos."
+  path="/certifications/"
+>
+  <main id="main-content" class="certifications-page">
+    <a class="archive-back-link" href="/">← Back to home</a>
+
+    <header class="certifications-header">
+      <p class="section-kicker">Professional development</p>
+      <h1>Licenses &amp; certifications</h1>
+      <p>A record of courses, professional certifications, and technical training.</p>
+    </header>
+
+    <ol class="certification-list">
+      {
+        certifications.map((certification) => (
+          <li class="certification-card">
+            <div class:list={['certification-mark', `certification-mark--${certification.tone}`]} aria-hidden="true">
+              {certification.mark}
+            </div>
+            <div class="certification-details">
+              <h2>{certification.name}</h2>
+              <p class="certification-issuer">{certification.issuer}</p>
+              <p class="certification-date">
+                Issued {certification.issued}
+                {certification.expires && <> <span aria-hidden="true">·</span> Expired {certification.expires}</>}
+              </p>
+              {certification.credentialId && <p class="certification-id">Credential ID {certification.credentialId}</p>}
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </main>
+</SiteLayout>
