@@ -20,13 +20,29 @@ const { experiences, headingLevel = 3 } = Astro.props;
               <h2>
                 {experience.role}
                 <span aria-hidden="true"> · </span>
-                <span class="experience-company">{experience.company}</span>
+                {
+                  experience.companyUrl ? (
+                    <a class="experience-company" href={experience.companyUrl} target="_blank" rel="noreferrer">
+                      {experience.company}<span class="sr-only"> (opens in a new tab)</span>
+                    </a>
+                  ) : (
+                    <span class="experience-company">{experience.company}</span>
+                  )
+                }
               </h2>
             ) : (
               <h3>
                 {experience.role}
                 <span aria-hidden="true"> · </span>
-                <span class="experience-company">{experience.company}</span>
+                {
+                  experience.companyUrl ? (
+                    <a class="experience-company" href={experience.companyUrl} target="_blank" rel="noreferrer">
+                      {experience.company}<span class="sr-only"> (opens in a new tab)</span>
+                    </a>
+                  ) : (
+                    <span class="experience-company">{experience.company}</span>
+                  )
+                }
               </h3>
             )
           }

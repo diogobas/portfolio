@@ -246,6 +246,15 @@ h2 {
   color: #5eead4;
 }
 
+a.experience-company {
+  text-decoration-color: rgb(94 234 212 / 45%);
+  text-underline-offset: 0.2em;
+}
+
+a.experience-company:hover {
+  color: #ccfbf1;
+}
+
 .experience-item article > p {
   margin-bottom: 1rem;
   color: #93a4bd;

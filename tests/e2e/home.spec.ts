@@ -52,8 +52,17 @@ test('links to the full career history without expanding the home timeline', asy
 
   await page.goto('/experience/');
   await expect(page.getByRole('heading', { name: 'Full experience' })).toBeVisible();
-  await expect(page.getByText('Fairstone Bank', { exact: true })).toBeVisible();
+  await expect(page.getByRole('link', { name: /Fairstone Bank/ })).toBeVisible();
   await expect(page.getByText('Sistema Inteligente de Automação PLUS · SIAPLUS', { exact: true })).toBeVisible();
+  await expect(page.getByRole('link', { name: /Pearson · eDynamic Learning/ })).toHaveAttribute(
+    'href',
+    'https://www.linkedin.com/company/pearson/',
+  );
+  await expect(page.getByRole('link', { name: /Pearson · eDynamic Learning/ })).toHaveAttribute(
+    'target',
+    '_blank',
+  );
+  await expect(page.getByRole('link', { name: /Sistema Inteligente de Automação PLUS · SIAPLUS/ })).toHaveCount(0);
 });
 
 test('publishes crawlable metadata and a sitemap', async ({ page }) => {
