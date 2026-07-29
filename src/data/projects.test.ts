@@ -16,8 +16,12 @@ describe('project content', () => {
     expect(projects.every((project) => project.links.every((link) => link.href.startsWith('https://')))).toBe(true);
   });
 
-  it('keeps a reviewable image manifest with safe decorative fallbacks', () => {
+  it('keeps approved screenshots descriptive and fallback artwork decorative', () => {
     expect(Object.keys(projectImages)).toHaveLength(projects.length);
-    expect(Object.values(projectImages).every((image) => image.decorative && image.alt === '')).toBe(true);
+    expect(
+      Object.values(projectImages).every((image) =>
+        image.status === 'approved' ? !image.decorative && image.alt.length > 0 : image.decorative && image.alt === '',
+      ),
+    ).toBe(true);
   });
 });

@@ -118,7 +118,6 @@ const featuredProjectSlugs = [
   'classcraft',
   'session-organizer',
   'coachly',
-  'ottolearn',
 ] as const;
 
 export const featuredProjects = featuredProjectSlugs.map((slug) => projects.find((item) => item.slug === slug)!);

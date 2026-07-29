@@ -8,7 +8,8 @@ test('renders the home page and its main sections', async ({ page }) => {
   await expect(page.getByRole('heading', { name: 'About' })).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Experience' })).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Featured projects' })).toBeVisible();
-  await expect(page.getByRole('heading', { name: 'Let’s connect' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'View full résumé' })).toHaveAttribute('href', '/resume/');
+  await expect(page.locator('.project-preview')).toHaveCount(4);
   await expect(page.getByRole('link', { name: 'LinkedIn' })).toHaveAttribute(
     'href',
     'https://www.linkedin.com/in/diogo-bastos/',
