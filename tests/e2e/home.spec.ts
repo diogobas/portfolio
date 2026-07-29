@@ -38,6 +38,16 @@ test('offers a sanitized public résumé', async ({ page }) => {
   await expect(page.locator('body')).not.toContainText(/\+\d[\d\s()-]{7,}/);
 });
 
+test('publishes crawlable metadata and a sitemap', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.locator('link[rel="icon"]')).toHaveAttribute('href', '/favicon.svg');
+  await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'index, follow');
+
+  const sitemap = await page.request.get('/sitemap.xml');
+  expect(sitemap.ok()).toBeTruthy();
+  expect(await sitemap.text()).toContain('<loc>https://diogobastos.pages.dev/projects/</loc>');
+});
+
 for (const path of ['/', '/projects/', '/resume/']) {
   test(`has no automatically detectable accessibility violations on ${path}`, async ({ page }) => {
     await page.goto(path);
