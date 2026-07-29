@@ -23,6 +23,15 @@ import { featuredProjects } from '../data/projects';
         <a href="/certifications/">Certifications</a>
       </nav>
 
+      <aside class="currently" aria-labelledby="currently-title">
+        <p class="section-kicker">Currently</p>
+        <h2 id="currently-title">Learning technology and full-stack engineering</h2>
+        <p>
+          I’m focused on creating reliable learning experiences, strengthening full-stack systems, and
+          continuing to grow as an engineer.
+        </p>
+      </aside>
+
       <ul class="social-links" aria-label="Social links">
         {
           socialLinks.map((link) => (
@@ -64,21 +73,26 @@ import { featuredProjects } from '../data/projects';
         <p class="section-kicker">02</p>
         <div class="section-heading-row">
           <h2 id="experience-title">Experience</h2>
-          <a href="/experience/">View full career <span aria-hidden="true">→</span></a>
         </div>
         <ExperienceList experiences={experiences} />
-        <a class="resume-cta" href="/resume/">View full résumé <span aria-hidden="true">→</span></a>
+        <div class="resume-cta">
+          <a href="/resume/">View full résumé <span class="external-arrow" aria-hidden="true">↗</span></a>
+          <a href="/resume/diogo-bastos-resume.pdf" download>Download PDF <span aria-hidden="true">↓</span></a>
+        </div>
       </section>
 
       <section id="projects" aria-labelledby="projects-title">
         <p class="section-kicker">03</p>
         <div class="section-heading-row">
           <h2 id="projects-title">Featured projects</h2>
-          <a href="/projects/">View archive <span aria-hidden="true">→</span></a>
         </div>
         <div class="featured-projects">
           {featuredProjects.map((project) => <ProjectPreview project={project} />)}
         </div>
+        <a class="project-archive-cta" href="https://brittanychiang.com/archive" target="_blank" rel="noreferrer">
+          View Full Project Archive <span class="link-arrow" aria-hidden="true">→</span>
+          <span class="sr-only"> (opens in a new tab)</span>
+        </a>
       </section>
 
     </main>

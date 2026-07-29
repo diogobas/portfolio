@@ -203,6 +203,30 @@ h2 {
   margin-top: 1.25rem;
 }
 
+.currently {
+  max-width: 38rem;
+  padding: 1.35rem;
+  margin-top: 2.25rem;
+  border: 1px solid rgb(94 234 212 / 18%);
+  border-radius: 0.6rem;
+  background: rgb(30 41 59 / 35%);
+}
+
+.currently .section-kicker {
+  margin-bottom: 0.55rem;
+}
+
+.currently h2 {
+  margin-bottom: 0.65rem;
+  font-size: 1.05rem;
+}
+
+.currently p:last-child {
+  margin-bottom: 0;
+  color: #9bacc5;
+  line-height: 1.7;
+}
+
 .experience-list {
   display: grid;
   gap: 0.35rem;
@@ -305,9 +329,42 @@ a.experience-company:hover {
   color: #ccfbf1;
 }
 
+.external-arrow {
+  display: inline-block;
+  transition: transform 180ms ease;
+}
+
+a:hover .external-arrow,
+a:focus-visible .external-arrow {
+  transform: translate(0.15rem, -0.15rem);
+}
+
+.link-arrow {
+  display: inline-block;
+  transition: transform 180ms ease;
+}
+
+a:hover .link-arrow,
+a:focus-visible .link-arrow {
+  transform: translateX(0.2rem);
+}
+
 .featured-projects {
   display: grid;
   gap: 1rem;
+}
+
+.project-archive-cta {
+  display: inline-block;
+  margin: 2rem 0 0 1.35rem;
+  color: #f8fafc;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.project-archive-cta:hover {
+  color: #5eead4;
 }
 
 .project-preview {
@@ -395,15 +452,20 @@ a.experience-company:hover {
 }
 
 .resume-cta {
-  display: inline-block;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem 1.25rem;
   margin: 1.75rem 0 0 1.35rem;
+}
+
+.resume-cta a {
   color: #f8fafc;
   font-size: 0.95rem;
   font-weight: 700;
   text-decoration: none;
 }
 
-.resume-cta:hover {
+.resume-cta a:hover {
   color: #5eead4;
 }
 

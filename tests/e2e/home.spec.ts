@@ -9,6 +9,17 @@ test('renders the home page and its main sections', async ({ page }) => {
   await expect(page.getByRole('heading', { name: 'Experience' })).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Featured projects' })).toBeVisible();
   await expect(page.getByRole('link', { name: 'View full résumé' })).toHaveAttribute('href', '/resume/');
+  await expect(page.getByRole('link', { name: 'Download PDF' })).toHaveAttribute(
+    'href',
+    '/resume/diogo-bastos-resume.pdf',
+  );
+  await expect(page.getByRole('link', { name: /View Full Project Archive/ })).toHaveAttribute(
+    'href',
+    'https://brittanychiang.com/archive',
+  );
+  await expect(page.getByRole('heading', { name: 'Learning technology and full-stack engineering' })).toBeVisible();
+  await expect(page.getByRole('link', { name: /View full career/ })).toHaveCount(0);
+  await expect(page.getByRole('link', { name: /View archive/ })).toHaveCount(0);
   await expect(page.locator('.project-preview')).toHaveCount(4);
   await expect(page.getByRole('link', { name: 'LinkedIn' })).toHaveAttribute(
     'href',
@@ -62,9 +73,8 @@ test('links to licenses and certifications without rendering them on the home pa
   await expect(page.locator('.certification-card')).toHaveCount(0);
 });
 
-test('links to the full career history without expanding the home timeline', async ({ page }) => {
+test('keeps the full career history available without expanding the home timeline', async ({ page }) => {
   await page.goto('/');
-  await expect(page.getByRole('link', { name: 'View full career' })).toHaveAttribute('href', '/experience/');
   await expect(page.getByText('PPI-Multitask', { exact: true })).not.toBeVisible();
 
   await page.goto('/experience/');
