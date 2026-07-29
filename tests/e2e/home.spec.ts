@@ -45,6 +45,17 @@ test('offers a sanitized public résumé', async ({ page }) => {
   await expect(page.locator('body')).not.toContainText(/\+\d[\d\s()-]{7,}/);
 });
 
+test('links to the full career history without expanding the home timeline', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.getByRole('link', { name: 'View full career' })).toHaveAttribute('href', '/experience/');
+  await expect(page.getByText('PPI-Multitask', { exact: true })).not.toBeVisible();
+
+  await page.goto('/experience/');
+  await expect(page.getByRole('heading', { name: 'Full experience' })).toBeVisible();
+  await expect(page.getByText('Fairstone Bank', { exact: true })).toBeVisible();
+  await expect(page.getByText('Sistema Inteligente de Automação PLUS · SIAPLUS', { exact: true })).toBeVisible();
+});
+
 test('publishes crawlable metadata and a sitemap', async ({ page }) => {
   await page.goto('/');
   await expect(page.locator('link[rel="icon"]')).toHaveAttribute('href', '/favicon.svg');
@@ -53,9 +64,10 @@ test('publishes crawlable metadata and a sitemap', async ({ page }) => {
   const sitemap = await page.request.get('/sitemap.xml');
   expect(sitemap.ok()).toBeTruthy();
   expect(await sitemap.text()).toContain('<loc>https://diogobastos.pages.dev/projects/</loc>');
+  expect(await sitemap.text()).toContain('<loc>https://diogobastos.pages.dev/experience/</loc>');
 });
 
-for (const path of ['/', '/projects/', '/resume/']) {
+for (const path of ['/', '/projects/', '/experience/', '/resume/']) {
   test(`has no automatically detectable accessibility violations on ${path}`, async ({ page }) => {
     await page.goto(path);
 

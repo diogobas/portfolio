@@ -234,6 +234,7 @@ h2 {
   text-transform: uppercase;
 }
 
+.experience-item h2,
 .experience-item h3 {
   margin-bottom: 0.7rem;
   color: #e7edf8;
@@ -549,11 +550,22 @@ h2 {
 }
 
 .resume-page,
+.experience-page,
 .not-found-page {
   width: min(100% - 3rem, 52rem);
   min-height: 100vh;
   padding: 4rem 0 8rem;
   margin: 0 auto;
+}
+
+.experience-page__header {
+  max-width: 42rem;
+  margin-bottom: 3rem;
+}
+
+.experience-page__header > p:last-child {
+  color: #9bacc5;
+  line-height: 1.75;
 }
 
 .resume-header {
