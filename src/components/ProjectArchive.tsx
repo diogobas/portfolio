@@ -146,7 +146,7 @@ export default function ProjectArchive({ projects }: Props) {
                     {project.technologies.map((technology) => <li key={technology}>{technology}</li>)}
                   </ul>
                   <a href={primaryLink.href} target="_blank" rel="noreferrer">
-                    {primaryLink.label}<span aria-hidden="true"> ↗</span>
+                    {primaryLink.label}<span className="external-arrow" aria-hidden="true"> ↗</span>
                   </a>
                 </div>
               </article>

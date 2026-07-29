@@ -21,7 +21,7 @@ const primaryLink = project.links[0];
       {project.technologies.map((technology) => <li>{technology}</li>)}
     </ul>
     <a class="project-preview__link" href={primaryLink.href} target="_blank" rel="noreferrer">
-      {primaryLink.label}<span aria-hidden="true"> ↗</span>
+      {primaryLink.label}<span class="external-arrow" aria-hidden="true"> ↗</span>
     </a>
   </div>
 </article>

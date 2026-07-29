@@ -17,6 +17,9 @@ export interface Experience {
   summary: string;
   technologies: readonly string[];
   companyUrl?: string;
+  companyLogo?: string;
+  companyLogoVariant?: 'color';
+  companyLogoAlign?: 'center';
 }
 
 export const experiences = [
@@ -25,6 +28,7 @@ export const experiences = [
     role: 'Senior Full-Stack Software Engineer',
     company: 'Pearson Education · eDynamic Learning',
     companyUrl: 'https://www.linkedin.com/company/pearson/',
+    companyLogo: '/images/companies/pearson.svg',
     summary:
       'Designing and maintaining scalable full-stack applications and REST APIs for digital curriculum and career-readiness experiences.',
     technologies: ['Node.js', 'TypeScript', 'Express', 'React', 'SQL'],
@@ -34,6 +38,7 @@ export const experiences = [
     role: 'Senior Software Developer',
     company: 'Houghton Mifflin Harcourt',
     companyUrl: 'https://www.linkedin.com/company/hmhlearn/',
+    companyLogo: '/images/companies/hmh.svg',
     summary:
       'Led and delivered classroom-management and learning-platform capabilities across micro-frontends, GraphQL services, and cloud infrastructure.',
     technologies: ['React', 'TypeScript', 'GraphQL', 'Java', 'PostgreSQL', 'Kubernetes'],
@@ -43,6 +48,8 @@ export const experiences = [
     role: 'Senior Software Developer',
     company: 'TEKsystems · HMH engagement',
     companyUrl: 'https://www.linkedin.com/company/teksystems/',
+    companyLogo: '/images/companies/teksystems.png',
+    companyLogoVariant: 'color',
     summary:
       'Built responsive, production-ready learning experiences and contributed to UI/UX workflows for HMH products.',
     technologies: ['React', 'TypeScript', 'GraphQL', 'Testing Library'],
@@ -52,6 +59,7 @@ export const experiences = [
     role: 'Software Developer',
     company: 'Neovation Learning Solutions',
     companyUrl: 'https://www.linkedin.com/company/neovation/',
+    companyLogo: '/images/companies/neovation.svg',
     summary:
       'Developed and evolved adaptive microlearning clients, analytics, deployment workflows, and supporting services.',
     technologies: ['React', 'TypeScript', 'Redux', 'Node.js', 'AWS Lambda'],
@@ -64,6 +72,7 @@ export const careerExperiences: readonly Experience[] = [
     role: 'Senior Full-Stack Software Engineer',
     company: 'Pearson · eDynamic Learning',
     companyUrl: 'https://www.linkedin.com/company/pearson/',
+    companyLogo: '/images/companies/pearson.svg',
     summary: 'Building full-stack applications and APIs for digital curriculum and career-readiness experiences.',
     technologies: ['React', 'TypeScript', 'Node.js', 'Java', 'Spring Boot', 'GraphQL'],
   },
@@ -72,6 +81,7 @@ export const careerExperiences: readonly Experience[] = [
     role: 'Senior Software Engineer',
     company: 'Fairstone Bank',
     companyUrl: 'https://www.linkedin.com/company/fairstone/',
+    companyLogo: '/images/companies/fairstone.svg',
     summary: 'Senior software-engineering role immediately before joining Pearson.',
     technologies: [],
   },
@@ -80,6 +90,7 @@ export const careerExperiences: readonly Experience[] = [
     role: 'Senior Software Developer',
     company: 'HMH',
     companyUrl: 'https://www.linkedin.com/company/hmhlearn/',
+    companyLogo: '/images/companies/hmh.svg',
     summary: 'Developed full-stack learning-platform features, Java services, GraphQL APIs, CI/CD workflows, and cloud infrastructure.',
     technologies: ['React', 'TypeScript', 'GraphQL', 'Java', 'Spring Cloud', 'PostgreSQL', 'Docker', 'Kubernetes'],
   },
@@ -88,6 +99,8 @@ export const careerExperiences: readonly Experience[] = [
     role: 'Senior Software Engineer (contract)',
     company: 'TEKsystems · HMH engagement',
     companyUrl: 'https://www.linkedin.com/company/teksystems/',
+    companyLogo: '/images/companies/teksystems.png',
+    companyLogoVariant: 'color',
     summary: 'Built responsive React interfaces and participated in requirements analysis, UI/UX workflows, and Agile delivery for HMH.',
     technologies: ['React', 'Redux', 'TypeScript', 'JavaScript', 'HTML', 'CSS'],
   },
@@ -96,6 +109,7 @@ export const careerExperiences: readonly Experience[] = [
     role: 'Software Developer',
     company: 'Neovation Learning Solutions',
     companyUrl: 'https://www.linkedin.com/company/neovation/',
+    companyLogo: '/images/companies/neovation.svg',
     summary: 'Created and evolved adaptive microlearning experiences, analytics reports, and supporting microservice-based services.',
     technologies: ['React', 'Redux', 'GraphQL', 'Node.js', 'Webpack', 'Gulp'],
   },
@@ -104,6 +118,7 @@ export const careerExperiences: readonly Experience[] = [
     role: 'Senior Java Developer',
     company: 'PPI-Multitask',
     companyUrl: 'https://www.linkedin.com/company/ppi-multitask/',
+    companyLogo: '/images/companies/ppi-multitask.svg',
     summary: 'Maintained a legacy Java web system, resolved client issues, and created requested reports.',
     technologies: ['Java', 'Swing', 'JavaFX', 'JPA', 'Spring', 'SQL Server', 'JBoss', 'EJB'],
   },
@@ -112,6 +127,8 @@ export const careerExperiences: readonly Experience[] = [
     role: 'Software Developer',
     company: 'Dexco',
     companyUrl: 'https://www.linkedin.com/company/dexcosa',
+    companyLogo: '/images/companies/dexco.svg',
+    companyLogoAlign: 'center',
     summary: 'Analyzed requirements and developed web, desktop, Windows Service, reporting, and SOAP/REST integration solutions.',
     technologies: ['ASP.NET MVC', 'C#', 'VB', 'JavaScript', 'SQL Server', 'Entity Framework', 'WCF'],
   },
@@ -120,6 +137,8 @@ export const careerExperiences: readonly Experience[] = [
     role: 'Java Developer, Level 4',
     company: 'Otimize-TI — Tecnologia Otimizando Negócios',
     companyUrl: 'https://www.linkedin.com/company/otimize-ti',
+    companyLogo: '/images/companies/sei-educacional.png',
+    companyLogoVariant: 'color',
     summary: 'Delivered features, bug fixes, and tests for a JEE application in an Agile team.',
     technologies: ['Java', 'Struts 2', 'JavaServer Faces', 'Eclipse'],
   },
@@ -128,6 +147,7 @@ export const careerExperiences: readonly Experience[] = [
     role: 'Java Developer',
     company: 'Indra',
     companyUrl: 'https://www.linkedin.com/company/indragroupglobal',
+    companyLogo: '/images/companies/indra.svg',
     summary: 'Developed and maintained enterprise Java web applications, testing reports, and continuous-integration workflows.',
     technologies: ['Java', 'Struts 2', 'Apache Wicket', 'EJB', 'Spring', 'JPA', 'Hibernate', 'Maven'],
   },
@@ -136,6 +156,7 @@ export const careerExperiences: readonly Experience[] = [
     role: 'Associate Software Developer',
     company: 'Senai Goiás',
     companyUrl: 'https://www.linkedin.com/company/senaigoias/',
+    companyLogo: '/images/companies/senai-goias.svg',
     summary: 'Maintained system architecture and developed Java, Flex, and SQL Server-connected web applications.',
     technologies: ['Java', 'Flex', 'ActionScript', 'Hibernate', 'Spring', 'JSP', 'SQL Server'],
   },

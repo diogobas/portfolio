@@ -13,39 +13,33 @@ const { experiences, headingLevel = 3 } = Astro.props;
   {
     experiences.map((experience) => (
       <li class="experience-item">
-        <p class="experience-period">{experience.period}</p>
+        <div class="experience-meta">
+          <p class="experience-period">{experience.period}</p>
+          {experience.companyLogo && (
+            <div
+              class:list={[
+                'experience-logo-tile',
+                experience.companyLogoVariant === 'color' && 'experience-logo-tile--color',
+                experience.companyLogoAlign === 'center' && 'experience-logo-tile--centered',
+              ]}
+            >
+              <img class="experience-logo" src={experience.companyLogo} alt="" width="104" height="48" loading="lazy" decoding="async" />
+            </div>
+          )}
+        </div>
         <article>
-          {
-            headingLevel === 2 ? (
-              <h2>
-                {experience.role}
-                <span aria-hidden="true"> · </span>
-                {
-                  experience.companyUrl ? (
-                    <a class="experience-company" href={experience.companyUrl} target="_blank" rel="noreferrer">
-                      {experience.company}<span class="sr-only"> (opens in a new tab)</span>
-                    </a>
-                  ) : (
-                    <span class="experience-company">{experience.company}</span>
-                  )
-                }
-              </h2>
-            ) : (
-              <h3>
-                {experience.role}
-                <span aria-hidden="true"> · </span>
-                {
-                  experience.companyUrl ? (
-                    <a class="experience-company" href={experience.companyUrl} target="_blank" rel="noreferrer">
-                      {experience.company}<span class="sr-only"> (opens in a new tab)</span>
-                    </a>
-                  ) : (
-                    <span class="experience-company">{experience.company}</span>
-                  )
-                }
-              </h3>
-            )
-          }
+          <div class="experience-heading">
+            {headingLevel === 2 ? <h2>{experience.role}<span aria-hidden="true"> ·</span></h2> : <h3>{experience.role}<span aria-hidden="true"> ·</span></h3>}
+            {
+              experience.companyUrl ? (
+                <a class="experience-company" href={experience.companyUrl} target="_blank" rel="noreferrer">
+                  {experience.company}<span class="sr-only"> (opens in a new tab)</span>
+                </a>
+              ) : (
+                <span class="experience-company">{experience.company}</span>
+              )
+            }
+          </div>
           <p>{experience.summary}</p>
           <ul class="technology-list" aria-label={`Technologies used at ${experience.company}`}>
             {experience.technologies.map((technology) => <li>{technology}</li>)}
