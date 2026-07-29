@@ -11,7 +11,7 @@ const primaryLink = project.links[0];
 
 <article class="project-preview">
   <div class="project-visual">
-    <img src={project.image} alt="" loading="lazy" decoding="async" />
+    <img src={project.image.src} alt={project.image.alt} loading="lazy" decoding="async" />
   </div>
   <div class="project-preview__body">
     <p class="project-preview__eyebrow">{project.period} · {project.company}</p>
