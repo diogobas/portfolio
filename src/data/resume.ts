@@ -42,6 +42,31 @@ export const resume = {
       details:
         'Developed adaptive microlearning clients, supporting Node.js services, analytics, and AWS deployment workflows.',
     },
+    {
+      period: '2016 — 2017',
+      role: 'Senior Java Developer',
+      company: 'PPI-Multitask',
+      details:
+        'Maintained legacy Java web systems and client-requested reports. Full-time from March–December 2016, with a documented part-time engagement from January 2016–December 2017.',
+    },
+    {
+      period: '2012 — 2016',
+      role: 'System Analyst',
+      company: 'Dexco (formerly Duratex)',
+      details:
+        'Analyzed requirements and developed Windows applications and services using .NET technologies, SQL Server, and SOAP/REST integrations.',
+    },
+    {
+      period: '2007 — 2012',
+      role: 'Java Developer / Associate Developer',
+      company: 'Indra · Otimize-TI · Sistema FIEG',
+      details:
+        'Earlier roles building corporate Java/JEE web applications, database solutions, and service integrations in Agile teams.',
+    },
   ],
-  education: 'BSc in Computer Science, Pontifical Catholic University of Goiás (Software Engineering emphasis)',
+  education: [
+    'BSc in Computer Science, Pontifical Catholic University of Goiás (Software Engineering emphasis)',
+    'Business Analysis, Fundação Vanzolini',
+    'Additional training in React web applications, AngularJS, Android, iOS, ITIL Foundation, and Java web development.',
+  ],
 } as const;

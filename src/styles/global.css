@@ -623,6 +623,15 @@ h2 {
   list-style: none;
 }
 
+.resume-education-list {
+  display: grid;
+  gap: 0.65rem;
+  padding-left: 1.2rem;
+  margin: 0;
+  color: #9bacc5;
+  line-height: 1.75;
+}
+
 .resume-contact a {
   color: #5eead4;
   font-weight: 700;
@@ -667,7 +676,7 @@ h2 {
   }
 
   .project-filters {
-    grid-template-columns: minmax(14rem, 1.5fr) minmax(10rem, 1fr) minmax(10rem, 1fr) auto;
+    grid-template-columns: minmax(14rem, 1.5fr) repeat(3, minmax(9rem, 1fr)) auto;
     align-items: end;
   }
 

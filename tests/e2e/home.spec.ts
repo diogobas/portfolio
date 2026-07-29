@@ -18,19 +18,26 @@ test('renders the home page and its main sections', async ({ page }) => {
 test('opens the searchable project archive', async ({ page }) => {
   await page.goto('/projects/');
 
-  await expect(page.getByRole('heading', { name: 'Selected work since 2017' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Selected work' })).toBeVisible();
   await expect(page.locator('[data-hydrated]')).toHaveAttribute('data-hydrated', 'true');
-  await expect(page.locator('.archive-heading > p')).toHaveText('6 projects');
+  await expect(page.locator('.archive-heading > p')).toHaveText('11 projects');
 
   await page.getByRole('searchbox', { name: 'Search' }).fill('OttoLearn');
   await expect(page.locator('.archive-heading > p')).toHaveText('1 project');
   await expect(page.getByRole('heading', { name: 'HMH Classcraft' })).not.toBeVisible();
+
+  await page.getByRole('combobox', { name: 'Type' }).selectOption('personal');
+  await expect(page.locator('.archive-heading > p')).toHaveText('0 projects');
+  await expect(page).toHaveURL(/type=personal/);
+  await page.getByRole('button', { name: 'Clear filters' }).click();
+  await expect(page.locator('.archive-heading > p')).toHaveText('11 projects');
 });
 
 test('offers a sanitized public résumé', async ({ page }) => {
   await page.goto('/resume/');
 
   await expect(page.getByRole('heading', { name: 'Diogo Bastos' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Senior Java Developer' })).toBeVisible();
   await expect(page.getByRole('link', { name: 'Download PDF' })).toHaveAttribute(
     'href',
     '/resume/diogo-bastos-resume.pdf',

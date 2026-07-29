@@ -1,16 +1,23 @@
 import { describe, expect, it } from 'vitest';
 import { featuredProjects, projects } from './projects';
+import { projectImages } from './project-images';
 
 describe('project content', () => {
-  it('contains the six public projects in the archive', () => {
-    expect(projects).toHaveLength(6);
+  it('contains professional and confirmed personal projects in the archive', () => {
+    expect(projects).toHaveLength(11);
+    expect(projects.filter((project) => project.type === 'personal')).toHaveLength(5);
   });
 
-  it('keeps five projects featured on the home page', () => {
-    expect(featuredProjects).toHaveLength(5);
+  it('keeps personal projects in the archive only', () => {
+    expect(featuredProjects.every((project) => project.type === 'professional')).toBe(true);
   });
 
   it('provides a secure public link for every project', () => {
     expect(projects.every((project) => project.links.every((link) => link.href.startsWith('https://')))).toBe(true);
+  });
+
+  it('keeps a reviewable image manifest with safe decorative fallbacks', () => {
+    expect(Object.keys(projectImages)).toHaveLength(projects.length);
+    expect(Object.values(projectImages).every((image) => image.decorative && image.alt === '')).toBe(true);
   });
 });
