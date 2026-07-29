@@ -8,9 +8,7 @@ Expand the published portfolio with a fuller career history, selected personal w
 
 ### Full résumé
 
-The currently deployed résumé is intentionally sanitized. The source PDF contains a phone number, so it must **not** be copied to `public/` without an explicit confirmation to disclose that information.
-
-Default implementation: create a fuller public résumé from the source content, preserving the existing professional contact policy (email, LinkedIn, GitHub only). If the original PDF must be downloadable verbatim, the owner must explicitly approve publication of its phone number first.
+The owner supplied an updated PDF that contains no phone number. Publish that original, full public PDF as the downloadable résumé and retain the existing HTML résumé route for accessible, indexable content.
 
 ### Earlier career history
 
@@ -37,14 +35,24 @@ Add each project to the searchable archive with a GitHub link. Feature a small c
 
 | Project | Planned description source | Initial technology evidence | Placement |
 | --- | --- | --- | --- |
-| Cappella Mosaico | organization/repository and owner notes required | to be confirmed | archive after confirmation |
-| Luncheon | repository access or owner notes required | to be confirmed | archive after confirmation |
+| Cappella Mosaico | owner-provided product history and approved mobile screenshots | to be confirmed | featured after asset review; label as archived/discontinued |
+| Luncheon | owner notes and public release when available | Python APIs: Rogers API and Triangle API | do not feature until the app or repository is publicly available |
 | Etikagis | repository inspection / owner notes required | to be confirmed | archive after confirmation |
 | SGS | repository inspection / owner notes required | to be confirmed | archive after confirmation |
 | LojaVirtual | repository inspection / owner notes required | to be confirmed | archive after confirmation |
-| TaskFlow Fullstack | repository README | React, TypeScript, Node.js, AWS, DynamoDB, PostgreSQL | candidate featured project |
+| GymRats | repository README | Python, FastAPI, React, Vite, TypeScript, GitHub Pages | recommended featured project |
+| TaskFlow Fullstack | repository README | React, TypeScript, Node.js, AWS, DynamoDB, PostgreSQL | archive; explicitly label as a learning project |
 | JSON Transformer API | repository README | Node.js, TypeScript, Express, Jest, Supertest | archive |
-| Deck Game | repository README | Java, Spring Boot, React, TypeScript, Material UI | candidate featured project |
+| Deck Game | repository README | Java, Spring Boot, React, TypeScript, Material UI | archive unless a public deployment is added |
+
+### Project positioning guidance
+
+- **GymRats** should be a home-page feature now: it has a clear public purpose, mature test coverage, a published static participant site, and a technically interesting local administration flow.
+- **Cappella Mosaico** should become a home-page feature once approved screenshots are available. Present it as an archived mobile product that was previously available in the Apple App Store and Google Play; do not imply that it is currently downloadable.
+- **Luncheon** should be held from the featured list until its repository or product is public. Its published supporting libraries can be listed as a small "Luncheon ecosystem" entry with their PyPI links:
+  - Rogers API — an unofficial Python wrapper for Rogers Bank credit-card data.
+  - Triangle API — an unofficial Python wrapper for Canadian Tire Triangle Mastercard data.
+- **TaskFlow Fullstack**, **Deck Game**, and **JSON Transformer API** are valuable archive entries. They should link to GitHub, identify their completion/status accurately, and not be elevated simply because they have a detailed README.
 
 Every card will identify the work as a personal project or an open-source contribution when appropriate. The copy will not infer authorship, completion, deployment status, or business outcomes beyond the repository evidence or owner confirmation.
 
@@ -72,7 +80,6 @@ Branch: `phase-6-content-expansion`
 
 ## Inputs required before implementation
 
-1. Confirm whether “original résumé” means the verbatim PDF with the phone number, or the expanded sanitized public résumé (recommended).
-2. Provide or approve the exact public screenshots/images for Pearson, HMH, and Neovation work, plus their source/permission context.
-3. Confirm the exact Cappella Mosaico repository or public URL, and the current availability/visibility of Luncheon.
-4. Choose up to three personal projects to feature on the home page; the recommended initial candidates are TaskFlow Fullstack, Deck Game, and JSON Transformer API.
+1. Provide or approve the exact public screenshots/images for Pearson, HMH, Neovation, and Cappella Mosaico work, plus their source/permission context.
+2. Confirm the exact public URL or repository for Cappella Mosaico and notify us when Luncheon is publicly available.
+3. Confirm the proposed home-page sequence: GymRats first, Cappella Mosaico after image review, and Luncheon after public release.
