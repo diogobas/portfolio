@@ -53,7 +53,9 @@ import SiteLayout from '../../layouts/SiteLayout.astro';
 
     <section class="resume-section" aria-labelledby="resume-education">
       <h2 id="resume-education">Education</h2>
-      <p>{resume.education}</p>
+      <ul class="resume-education-list">
+        {resume.education.map((item) => <li>{item}</li>)}
+      </ul>
     </section>
 
     <section class="resume-section resume-contact" aria-labelledby="resume-contact">

@@ -1,0 +1,21 @@
+---
+import ExperienceList from '../../components/ExperienceList.astro';
+import { careerExperiences } from '../../data/profile';
+import SiteLayout from '../../layouts/SiteLayout.astro';
+---
+
+<SiteLayout
+  title="Career history | Diogo Bastos"
+  description="Full career history of Diogo Bastos, senior full-stack software engineer."
+  path="/experience/"
+>
+  <main id="main-content" class="experience-page">
+    <a class="archive-back-link" href="/">← Back to home</a>
+    <header class="experience-page__header">
+      <p class="section-kicker">Career history</p>
+      <h1>Full experience</h1>
+      <p>Roles and technologies across more than 19 years in software engineering.</p>
+    </header>
+    <ExperienceList experiences={careerExperiences} headingLevel={2} />
+  </main>
+</SiteLayout>

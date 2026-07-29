@@ -1,6 +1,6 @@
 const siteUrl = (import.meta.env.PUBLIC_SITE_URL || 'https://diogobastos.pages.dev').replace(/\/$/, '');
 
-const paths = ['/', '/projects/', '/resume/'];
+const paths = ['/', '/projects/', '/experience/', '/resume/'];
 
 export function GET() {
   const urls = paths
