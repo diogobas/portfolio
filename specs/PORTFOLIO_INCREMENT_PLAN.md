@@ -41,6 +41,7 @@ Add each project to the searchable archive with a GitHub link. Feature a small c
 | SGS | repository inspection / owner notes required | to be confirmed | archive after confirmation |
 | LojaVirtual | repository inspection / owner notes required | to be confirmed | archive after confirmation |
 | GymRats | repository README | Python, FastAPI, React, Vite, TypeScript, GitHub Pages | recommended featured project |
+| ILPN.ca | public website and owner confirmation | Planning Center / Church Center configuration and integrations | archive; approved screenshot requested during implementation |
 | TaskFlow Fullstack | repository README | React, TypeScript, Node.js, AWS, DynamoDB, PostgreSQL | archive; explicitly label as a learning project |
 | JSON Transformer API | repository README | Node.js, TypeScript, Express, Jest, Supertest | archive |
 | Deck Game | repository README | Java, Spring Boot, React, TypeScript, Material UI | archive unless a public deployment is added |
@@ -53,6 +54,7 @@ Add each project to the searchable archive with a GitHub link. Feature a small c
   - Rogers API — an unofficial Python wrapper for Rogers Bank credit-card data.
   - Triangle API — an unofficial Python wrapper for Canadian Tire Triangle Mastercard data.
 - **TaskFlow Fullstack**, **Deck Game**, and **JSON Transformer API** are valuable archive entries. They should link to GitHub, identify their completion/status accurately, and not be elevated simply because they have a detailed README.
+- **ILPN.ca** is a live church website that currently redirects to Church Center. Present it as a non-code delivery completed through Planning Center: the owner handled design, configuration, integrations, and ongoing maintenance. There is no public repository. Request the approved screenshot at implementation time before adding a visual asset.
 
 Every card will identify the work as a personal project or an open-source contribution when appropriate. The copy will not infer authorship, completion, deployment status, or business outcomes beyond the repository evidence or owner confirmation.
 
