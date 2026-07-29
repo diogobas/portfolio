@@ -4,7 +4,7 @@ import { experiences, profile, socialLinks } from './profile';
 describe('profile content', () => {
   it('exposes a public email address without a phone number', () => {
     expect(profile.email).toBe('diogovvb@gmail.com');
-    expect(Object.values(profile).join(' ')).not.toMatch(/\+1|514/);
+    expect(Object.values(profile).join(' ')).not.toMatch(/\+\d[\d\s()-]{7,}/);
   });
 
   it('keeps the experience list ordered from current to earlier roles', () => {

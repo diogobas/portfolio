@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import AxeBuilder from '@axe-core/playwright';
 
 test('renders the home page and its main sections', async ({ page }) => {
   await page.goto('/');
@@ -25,3 +26,23 @@ test('opens the searchable project archive', async ({ page }) => {
   await expect(page.locator('.archive-heading > p')).toHaveText('1 project');
   await expect(page.getByRole('heading', { name: 'HMH Classcraft' })).not.toBeVisible();
 });
+
+test('offers a sanitized public résumé', async ({ page }) => {
+  await page.goto('/resume/');
+
+  await expect(page.getByRole('heading', { name: 'Diogo Bastos' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Download PDF' })).toHaveAttribute(
+    'href',
+    '/resume/diogo-bastos-resume.pdf',
+  );
+  await expect(page.locator('body')).not.toContainText(/\+\d[\d\s()-]{7,}/);
+});
+
+for (const path of ['/', '/projects/', '/resume/']) {
+  test(`has no automatically detectable accessibility violations on ${path}`, async ({ page }) => {
+    await page.goto(path);
+
+    const results = await new AxeBuilder({ page }).analyze();
+    expect(results.violations).toEqual([]);
+  });
+}

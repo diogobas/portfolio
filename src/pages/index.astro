@@ -6,7 +6,7 @@ import { experiences, profile, socialLinks } from '../data/profile';
 import { featuredProjects } from '../data/projects';
 ---
 
-<SiteLayout title="Diogo Bastos | Senior Full-Stack Software Engineer">
+<SiteLayout title="Diogo Bastos | Senior Full-Stack Software Engineer" path="/">
   <div class="page-shell">
     <header class="intro" aria-label="Introduction">
       <a class="brand" href="#about">
@@ -87,6 +87,7 @@ import { featuredProjects } from '../data/projects';
           </p>
         </div>
         <a class="text-link" href={`mailto:${profile.email}`}>{profile.email}</a>
+        <p class="resume-link"><a class="text-link" href="/resume/">View public résumé <span aria-hidden="true">→</span></a></p>
       </section>
     </main>
   </div>
