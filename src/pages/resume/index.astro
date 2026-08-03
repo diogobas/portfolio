@@ -15,6 +15,14 @@ import SiteLayout from '../../layouts/SiteLayout.astro';
       <div class="resume-actions">
         <a class="text-link" href="/experience/">View career history</a>
         <a class="text-link" href="/resume/diogo-bastos-resume.pdf" download>
+          Download résumé PDF <span aria-hidden="true">↓</span>
+        </a>
+        <a
+          id="ats-resume-download"
+          class="text-link ats-resume-download"
+          href="/resume/diogo-bastos-resume-ats.pdf"
+          download
+        >
           Download ATS-friendly PDF <span aria-hidden="true">↓</span>
         </a>
       </div>
@@ -76,8 +84,8 @@ import SiteLayout from '../../layouts/SiteLayout.astro';
         </ol>
       </section>
 
-      <section class="resume-section" aria-labelledby="education-training">
-        <h2 id="education-training">Education and Training</h2>
+      <section class="resume-section" aria-labelledby="education">
+        <h2 id="education">Education</h2>
         <div class="resume-education">
           {
             resume.education.map((education) => (
@@ -89,6 +97,7 @@ import SiteLayout from '../../layouts/SiteLayout.astro';
               </div>
             ))
           }
+          <h3>Training</h3>
           <ul>
             {resume.training.map((training) => <li>{training}</li>)}
           </ul>

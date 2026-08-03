@@ -24,15 +24,6 @@ import { featuredProjects } from '../data/projects';
         <a href="/certifications/">Certifications</a>
       </nav>
 
-      <aside class="currently" aria-labelledby="currently-title">
-        <p class="section-kicker">Currently</p>
-        <h2 id="currently-title">Learning technology and full-stack engineering</h2>
-        <p>
-          I’m focused on creating reliable learning experiences, strengthening full-stack systems,
-          and continuing to grow as an engineer.
-        </p>
-      </aside>
-
       <ul class="social-links" aria-label="Social links">
         {
           socialLinks.map((link) => (
@@ -82,14 +73,11 @@ import { featuredProjects } from '../data/projects';
         </div>
         <ExperienceList experiences={experiences} />
         <div class="resume-cta">
-          <a href="/resume/"
-            >View HTML résumé <span class="link-arrow" aria-hidden="true">→</span></a
-          >
           <a href="/experience/"
             >View career history <span class="link-arrow" aria-hidden="true">→</span></a
           >
           <a href="/resume/diogo-bastos-resume.pdf" download
-            >Download ATS-friendly PDF <span aria-hidden="true">↓</span></a
+            >Download résumé PDF <span aria-hidden="true">↓</span></a
           >
         </div>
       </section>

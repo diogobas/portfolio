@@ -8,15 +8,12 @@ test('renders the home page and its main sections', async ({ page }) => {
   await expect(page.getByRole('heading', { name: 'About' })).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Experience' })).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Featured projects' })).toBeVisible();
-  await expect(page.getByRole('link', { name: 'View HTML résumé' })).toHaveAttribute(
-    'href',
-    '/resume/'
-  );
+  await expect(page.getByRole('link', { name: 'View HTML résumé' })).toHaveCount(0);
   await expect(page.getByRole('link', { name: 'View career history' })).toHaveAttribute(
     'href',
     '/experience/'
   );
-  await expect(page.getByRole('link', { name: 'Download ATS-friendly PDF' })).toHaveAttribute(
+  await expect(page.getByRole('link', { name: 'Download résumé PDF' })).toHaveAttribute(
     'href',
     '/resume/diogo-bastos-resume.pdf'
   );
@@ -24,9 +21,7 @@ test('renders the home page and its main sections', async ({ page }) => {
     'href',
     '/projects/'
   );
-  await expect(
-    page.getByRole('heading', { name: 'Learning technology and full-stack engineering' })
-  ).toBeVisible();
+  await expect(page.getByText('Currently', { exact: true })).toHaveCount(0);
   await expect(page.getByRole('link', { name: /View full career/ })).toHaveCount(0);
   await expect(page.getByRole('link', { name: /View archive/ })).toHaveCount(0);
   await expect(page.locator('.project-preview')).toHaveCount(4);
@@ -109,7 +104,8 @@ test('publishes a semantic ATS-friendly résumé without requiring JavaScript', 
   await expect(page.getByRole('heading', { name: 'Professional Summary' })).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Core Skills' })).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Professional Experience' })).toBeVisible();
-  await expect(page.getByRole('heading', { name: 'Education and Training' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Education' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Training' })).toBeVisible();
   await expect(page.getByText('Fairstone Bank', { exact: false })).toBeVisible();
   await expect(page.getByRole('link', { name: 'diogovvb@gmail.com' })).toHaveAttribute(
     'href',
@@ -131,9 +127,17 @@ test('publishes a semantic ATS-friendly résumé without requiring JavaScript', 
     url: 'https://diogobastos.pages.dev',
   });
 
-  const pdf = await page.request.get('/resume/diogo-bastos-resume.pdf');
-  expect(pdf.ok()).toBeTruthy();
-  expect(pdf.headers()['content-type']).toContain('application/pdf');
+  const visualPdf = await page.request.get('/resume/diogo-bastos-resume.pdf');
+  expect(visualPdf.ok()).toBeTruthy();
+  expect(visualPdf.headers()['content-type']).toContain('application/pdf');
+
+  const atsPdf = await page.request.get('/resume/diogo-bastos-resume-ats.pdf');
+  expect(atsPdf.ok()).toBeTruthy();
+  expect(atsPdf.headers()['content-type']).toContain('application/pdf');
+  await expect(page.locator('#ats-resume-download')).toBeHidden();
+
+  await page.goto('/resume/#ats-resume-download');
+  await expect(page.locator('#ats-resume-download')).toBeVisible();
 
   await context.close();
 });

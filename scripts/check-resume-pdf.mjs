@@ -8,7 +8,7 @@ import { getDocument } from 'pdfjs-dist/legacy/build/pdf.mjs';
 import { resume } from '../src/data/resume.ts';
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const pdfPath = path.join(projectRoot, 'public/resume/diogo-bastos-resume.pdf');
+const pdfPath = path.join(projectRoot, 'public/resume/diogo-bastos-resume-ats.pdf');
 const bytes = new Uint8Array(await readFile(pdfPath));
 const pdf = await getDocument({ data: bytes, useSystemFonts: true }).promise;
 
@@ -53,7 +53,7 @@ function assertInOrder(values, label) {
 }
 
 assertInOrder(
-  ['Professional Summary', 'Core Skills', 'Professional Experience', 'Education and Training'],
+  ['Professional Summary', 'Core Skills', 'Professional Experience', 'Education'],
   'Résumé section'
 );
 

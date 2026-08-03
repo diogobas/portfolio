@@ -24,7 +24,7 @@ export const resume = {
     github: 'https://github.com/diogobas',
   },
   summary:
-    'Senior full-stack software engineer with 20 years of experience building scalable web applications and learning technology in collaborative, Agile teams. Experienced across React and TypeScript frontends, Node.js and Java/Spring Boot services, GraphQL and REST APIs, PostgreSQL, AWS, Docker, Kubernetes, CI/CD, automated testing, and observability. Has led a six-engineer team and delivered maintainable, accessible software from requirements and technical design through production monitoring.',
+    'Senior full-stack software engineer with 20 years of experience building scalable web applications and learning technology in collaborative, Agile teams. Experienced in front-end development with React and TypeScript; Node.js and Java/Spring Boot services; GraphQL and REST APIs; PostgreSQL; AWS; Docker; Kubernetes; CI/CD; automated testing; and observability. Has led a six-engineer team and delivered maintainable, accessible software from requirements and technical design through production monitoring.',
   skills: [
     {
       category: 'Languages',
@@ -59,13 +59,17 @@ export const resume = {
       items: ['PostgreSQL', 'SQL Server', 'AWS', 'AWS Lambda', 'Docker', 'Kubernetes'],
     },
     {
-      category: 'Delivery and quality',
+      category: 'Delivery, quality, and operations',
       items: [
         'CI/CD',
         'Concourse',
         'Jenkins',
         'Turborepo',
         'Datadog',
+        'Bash scripting',
+        'Linux',
+        'Debugging',
+        'Troubleshooting',
         'Jest',
         'Vitest',
         'Testing Library',
@@ -110,6 +114,7 @@ export const resume = {
         'Led and delivered classroom-management and learning-platform capabilities across micro-frontends, GraphQL services, and cloud infrastructure.',
       highlights: [
         'Led a team of six engineers delivering classroom-management solutions for teachers.',
+        'Mentored junior developers through code reviews, technical guidance, and knowledge sharing.',
         'Built full-stack features with React, TypeScript, GraphQL, Java/Spring Boot, Node.js, PostgreSQL, and micro-frontends.',
         'Operated services with Docker, Kubernetes, Concourse, Jenkins, Turborepo, and Datadog observability.',
       ],
@@ -194,7 +199,7 @@ export const resume = {
         'Analyzed requirements and developed web, desktop, Windows Service, reporting, and SOAP/REST integration solutions.',
       highlights: [
         'Developed Windows applications and services with .NET, C#, Visual Basic, and SOAP/REST integrations.',
-        'Designed and programmed Microsoft SQL Server databases and reporting solutions.',
+        'Performed relational database design and developed reporting solutions with Microsoft SQL Server.',
       ],
       technologies: [
         'ASP.NET MVC',

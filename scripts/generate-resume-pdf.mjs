@@ -10,7 +10,7 @@ const run = promisify(execFile);
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const astroCliPath = path.join(projectRoot, 'node_modules/astro/bin/astro.mjs');
 const distPath = path.join(projectRoot, 'dist');
-const outputPath = path.join(projectRoot, 'public/resume/diogo-bastos-resume.pdf');
+const outputPath = path.join(projectRoot, 'public/resume/diogo-bastos-resume-ats.pdf');
 const resumeUrl = 'http://resume.local/resume/';
 
 const contentTypes = {
