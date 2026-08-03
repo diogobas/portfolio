@@ -9,6 +9,14 @@ import SiteLayout from '../../layouts/SiteLayout.astro';
   path="/resume/"
   profilePage
 >
+  <a
+    id="ats-resume-download"
+    class="ats-resume-download"
+    href="/resume/diogo-bastos-resume-ats.pdf"
+    download
+  >
+    Download ATS-friendly PDF
+  </a>
   <main id="main-content" class="resume-page">
     <nav class="resume-screen-nav" aria-label="Résumé navigation">
       <a class="archive-back-link" href="/">← Back to portfolio</a>
@@ -16,14 +24,6 @@ import SiteLayout from '../../layouts/SiteLayout.astro';
         <a class="text-link" href="/experience/">View career history</a>
         <a class="text-link" href="/resume/diogo-bastos-resume.pdf" download>
           Download résumé PDF <span aria-hidden="true">↓</span>
-        </a>
-        <a
-          id="ats-resume-download"
-          class="text-link ats-resume-download"
-          href="/resume/diogo-bastos-resume-ats.pdf"
-          download
-        >
-          Download ATS-friendly PDF <span aria-hidden="true">↓</span>
         </a>
       </div>
     </nav>

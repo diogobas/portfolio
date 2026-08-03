@@ -134,10 +134,11 @@ test('publishes a semantic ATS-friendly résumé without requiring JavaScript', 
   const atsPdf = await page.request.get('/resume/diogo-bastos-resume-ats.pdf');
   expect(atsPdf.ok()).toBeTruthy();
   expect(atsPdf.headers()['content-type']).toContain('application/pdf');
-  await expect(page.locator('#ats-resume-download')).toBeHidden();
-
-  await page.goto('/resume/#ats-resume-download');
+  await page.locator('.skip-link').focus();
+  await expect(page.locator('.skip-link')).toBeFocused();
+  await page.locator('#ats-resume-download').focus();
   await expect(page.locator('#ats-resume-download')).toBeVisible();
+  await expect(page.locator('#ats-resume-download')).toBeFocused();
 
   await context.close();
 });
