@@ -61,13 +61,17 @@ Source: [Cognizant — Senior Full Stack Engineer](https://careers.cognizant.com
 
 Documented matches include Java, Spring Boot, Node.js, microservices, REST APIs, AWS, Docker, Kubernetes, CI/CD, automated testing, and architecture work. Current Angular, Azure, OpenShift, and Copilot experience are not documented and must not be added merely to improve a match score.
 
-## Local Resume Matcher workflow
+## Local Resume Matcher check and workflow
 
-Use the pinned `1.2` image and a local Ollama model so résumé data and job descriptions remain on the machine:
+Resume Matcher release `1.2.0` was cloned at commit `830bafd0cd2bbb4f105b58127d0a86e112b1de0f` and run from a temporary directory with local Ollama and `gemma3:4b`. The official registry references for `ghcr.io/srbhr/resume-matcher:1.2` and `:1.2.0` returned `not found` on the audit date, so no mutable `latest` image was substituted.
+
+The release's PDF parser successfully extracted the regenerated résumé: 4,434 characters and all 12 checked markers, including the identity, email, four major headings, Pearson, Fairstone, HMH, React, TypeScript, and Spring Boot. The full LLM structuring pass was started locally but exceeded the practical wait window on CPU and was stopped before it produced a tailored output. It therefore provides no score or recommendation to act on.
+
+For a future local run:
 
 1. Regenerate and validate the base résumé with `pnpm resume:generate`.
-2. Start Ollama and ensure `gemma3:4b` is available.
-3. Start Resume Matcher with `ghcr.io/srbhr/resume-matcher:1.2`, exposing only its local application port and configuring Ollama as `http://host.docker.internal:11434`.
+2. Clone the `1.2.0` release commit (or use a verified immutable container digest if the publisher provides one).
+3. Configure only `LLM_PROVIDER=ollama`, `LLM_MODEL=gemma3:4b`, and `LLM_API_BASE=http://localhost:11434`.
 4. Upload the generated PDF and paste one real job description at a time.
 5. Record matched requirements, missing requirements, and proposed wording; do not use the numerical score as a release gate.
 6. Accept a suggestion only when it is supported by `resume.ts` or other verifiable work evidence. Save the tailored copy outside the public portfolio unless it is intentionally replacing the base résumé.
