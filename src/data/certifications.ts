@@ -5,7 +5,15 @@ export type Certification = {
   expires?: string;
   credentialId?: string;
   mark: string;
-  tone: 'linkedin' | 'traliant' | 'certiprof' | 'udemy' | 'eduardo-pires' | 'generic' | 'unigoias' | 'senac';
+  tone:
+    | 'linkedin'
+    | 'traliant'
+    | 'certiprof'
+    | 'udemy'
+    | 'eduardo-pires'
+    | 'generic'
+    | 'unigoias'
+    | 'senac';
 };
 
 export const certifications: readonly Certification[] = [

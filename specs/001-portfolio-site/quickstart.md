@@ -98,6 +98,7 @@ pnpm dev
 ```
 
 Features:
+
 - Hot Module Replacement (HMR) - changes auto-reload
 - Fast refresh - component state preserved
 - Vite dev server (fast startup ~300ms)
@@ -120,16 +121,16 @@ interface ProjectCardProps {
 
 /**
  * ProjectCard - Displays a single project in card format
- * 
+ *
  * @param project - Project data to display
  * @param onCardClick - Callback when card is clicked
  */
-export const ProjectCard: React.FC<ProjectCardProps> = ({ 
-  project, 
-  onCardClick 
+export const ProjectCard: React.FC<ProjectCardProps> = ({
+  project,
+  onCardClick
 }) => {
   return (
-    <Card 
+    <Card
       onClick={() => onCardClick(project.id)}
       sx={{ cursor: "pointer" }}
     >
@@ -145,7 +146,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
         <h3>{project.name}</h3>
         <p>{project.company}</p>
         <p>{project.brief}</p>
-        
+
         <Box sx={{ display: "flex", gap: 1, flexWrap: "wrap" }}>
           {project.technologies.map((tech) => (
             <Chip key={tech} label={tech} />
@@ -158,6 +159,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
 ```
 
 **Key Points**:
+
 - Use TypeScript interfaces for props (type safety)
 - Add JSDoc comments above component
 - Use Material-UI components for consistency
@@ -167,9 +169,9 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
 
 ```typescript
 // src/hooks/useProjects.ts
-import { useQuery } from "@tanstack/react-query";
-import { Project } from "../types/project";
-import { projectService } from "../services/projectService";
+import { useQuery } from '@tanstack/react-query';
+import { Project } from '../types/project';
+import { projectService } from '../services/projectService';
 
 interface UseProjectsReturn {
   projects: Project[];
@@ -179,7 +181,7 @@ interface UseProjectsReturn {
 
 export function useProjects(): UseProjectsReturn {
   const { data, isLoading, error } = useQuery({
-    queryKey: ["projects"],
+    queryKey: ['projects'],
     queryFn: () => projectService.getProjects(),
     staleTime: 60 * 60 * 1000, // 1 hour
   });
@@ -213,12 +215,12 @@ const mockProject: Project = {
 describe("ProjectCard", () => {
   it("renders project title and brief", () => {
     render(
-      <ProjectCard 
-        project={mockProject} 
-        onCardClick={jest.fn()} 
+      <ProjectCard
+        project={mockProject}
+        onCardClick={jest.fn()}
       />
     );
-    
+
     expect(screen.getByText("Test Project")).toBeInTheDocument();
     expect(screen.getByText("Test brief")).toBeInTheDocument();
   });
@@ -226,12 +228,12 @@ describe("ProjectCard", () => {
   it("calls onCardClick when clicked", () => {
     const onCardClick = jest.fn();
     render(
-      <ProjectCard 
-        project={mockProject} 
+      <ProjectCard
+        project={mockProject}
         onCardClick={onCardClick}
       />
     );
-    
+
     screen.getByText("Test Project").click();
     expect(onCardClick).toHaveBeenCalledWith("test-project");
   });
@@ -292,15 +294,16 @@ pnpm test:coverage
 **Test File Location**: `tests/unit/[feature]/[component].test.tsx`
 
 **Test Structure**:
+
 ```typescript
 describe("ComponentName", () => {
   it("should do something specific", () => {
     // Arrange: Set up test data
     const mockData = { /* ... */ };
-    
+
     // Act: Perform action
     render(<Component data={mockData} />);
-    
+
     // Assert: Verify result
     expect(screen.getByText("expected text")).toBeInTheDocument();
   });
@@ -359,6 +362,7 @@ pnpm typecheck
 ```
 
 **Rules**:
+
 - No `any` types (use `unknown` if necessary, then narrow type)
 - All function parameters must be typed
 - All function return types should be explicit
@@ -407,21 +411,18 @@ All public functions and components must have JSDoc:
 ```typescript
 /**
  * ProjectCard - Displays a project in card format
- * 
+ *
  * @param project - Project data to display
  * @param onCardClick - Callback when card is clicked
  * @returns React component displaying project card
- * 
+ *
  * @example
- * <ProjectCard 
- *   project={myProject} 
+ * <ProjectCard
+ *   project={myProject}
  *   onCardClick={(id) => console.log(id)}
  * />
  */
-export const ProjectCard: React.FC<ProjectCardProps> = ({ 
-  project, 
-  onCardClick 
-}) => {
+export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onCardClick }) => {
   // ...
 };
 ```
@@ -458,6 +459,7 @@ git push origin 001-portfolio-site
 ```
 
 **Commit Message Format**:
+
 - Prefix: `feat:`, `fix:`, `chore:`, `docs:`, `test:`
 - Subject: 50 chars max, imperative mood
 - Body: Detailed explanation (optional)
@@ -493,6 +495,7 @@ pnpm test      # Run unit tests
 ```
 
 **Steps**:
+
 1. Add breakpoint in code (click gutter)
 2. Press F5 or Run → Start Debugging
 3. Browser opens with debugger
@@ -502,9 +505,9 @@ pnpm test      # Run unit tests
 
 ```typescript
 // Temporary logging (remove before committing)
-console.log("Debug:", value);
-console.error("Error:", error);
-console.warn("Warning:", message);
+console.log('Debug:', value);
+console.error('Error:', error);
+console.warn('Warning:', message);
 
 // Better: Use React DevTools (Chrome extension)
 // - Inspect component tree
@@ -546,7 +549,7 @@ export const ProjectCard = React.memo(({ project, onCardClick }) => {
 });
 
 // ✅ Good: Lazy-loaded route
-const ProjectDetailPage = React.lazy(() => 
+const ProjectDetailPage = React.lazy(() =>
   import("./pages/ProjectDetailPage")
 );
 
@@ -571,6 +574,7 @@ const style = { color: "red" }; // Define outside component
 ### Common Issues
 
 **Issue**: Hot reload not working
+
 ```bash
 # Solution 1: Restart dev server
 pnpm dev
@@ -581,12 +585,14 @@ pnpm dev
 ```
 
 **Issue**: TypeScript errors in IDE
+
 ```bash
 # Solution: Restart TypeScript server (VS Code)
 # Command palette → TypeScript: Restart TS Server
 ```
 
 **Issue**: Tests failing with module errors
+
 ```bash
 # Solution: Reinstall dependencies
 rm -rf node_modules pnpm-lock.yaml
@@ -595,6 +601,7 @@ pnpm test
 ```
 
 **Issue**: Build fails
+
 ```bash
 # Solution 1: Check for lint errors
 pnpm lint
@@ -610,6 +617,7 @@ pnpm build
 ## Additional Resources
 
 ### Documentation
+
 - [React 19 Docs](https://react.dev)
 - [Material-UI Documentation](https://mui.com)
 - [TypeScript Handbook](https://www.typescriptlang.org/docs/)
@@ -617,12 +625,14 @@ pnpm build
 - [Playwright](https://playwright.dev)
 
 ### Project Documentation
+
 - [spec.md](./spec.md) - Feature specification
 - [plan.md](./plan.md) - Implementation plan
 - [data-model.md](./data-model.md) - Data structures
 - [contracts/components.md](./contracts/components.md) - Component interfaces
 
 ### Development Tools
+
 - VS Code Extensions:
   - ES7+ React/Redux/React-Native snippets
   - Prettier - Code formatter

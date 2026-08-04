@@ -29,15 +29,17 @@
 
 ## Constitution Check
 
-*GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
+_GATE: Must pass before Phase 0 research. Re-check after Phase 1 design._
 
 **Portfolio Constitution Principles** (1.0.0):
+
 - **Code Quality**: Type safety, linting, code reviews required
 - **Testing Standards**: TDD mandatory, 80% coverage for new code, unit + integration tests
 - **User Experience Consistency**: Design system compliance, WCAG 2.1 AA accessibility
 - **Performance Requirements**: Performance budget defined, monitoring strategy, <200ms p95 API response
 
 **This Plan**:
+
 - [ ] Code quality gates configured (ESLint, TypeScript strict mode)
 - [ ] Testing strategy documented (unit/integration test plan)
 - [ ] UX consistency plan (design system alignment)
@@ -58,6 +60,7 @@ specs/[###-feature]/
 ```
 
 ### Source Code (repository root)
+
 <!--
   ACTION REQUIRED: Replace the placeholder tree below with the concrete layout
   for this feature. Delete unused options and expand the chosen structure with
@@ -108,7 +111,7 @@ directories captured above]
 
 > **Fill ONLY if Constitution Check has violations that must be justified**
 
-| Violation | Why Needed | Simpler Alternative Rejected Because |
-|-----------|------------|-------------------------------------|
-| [e.g., 4th project] | [current need] | [why 3 projects insufficient] |
-| [e.g., Repository pattern] | [specific problem] | [why direct DB access insufficient] |
+| Violation                  | Why Needed         | Simpler Alternative Rejected Because |
+| -------------------------- | ------------------ | ------------------------------------ |
+| [e.g., 4th project]        | [current need]     | [why 3 projects insufficient]        |
+| [e.g., Repository pattern] | [specific problem] | [why direct DB access insufficient]  |

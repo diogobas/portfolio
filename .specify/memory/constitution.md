@@ -14,6 +14,7 @@ Follow-up: None deferred
 All production code MUST adhere to established coding standards enforced through automated linting, type checking, and peer review. Code MUST prioritize readability, maintainability, and consistency across the codebase. Every module MUST clearly separate concerns and avoid unnecessary complexity.
 
 **Requirements:**
+
 - Type safety: Full TypeScript strict mode enabled
 - Linting: ESLint + Prettier enforced on all commits
 - Code reviews: Minimum two approvals before merge
@@ -25,6 +26,7 @@ All production code MUST adhere to established coding standards enforced through
 Test-Driven Development (TDD) is mandatory. Tests MUST be written before implementation code. Coverage requirements: minimum 80% for new code, 75% for overall codebase. Both unit tests and integration tests MUST be included for critical paths.
 
 **Requirements:**
+
 - Red-Green-Refactor cycle strictly enforced
 - Tests approved by stakeholders before implementation
 - Unit tests: Jest with isolated dependencies
@@ -37,6 +39,7 @@ Test-Driven Development (TDD) is mandatory. Tests MUST be written before impleme
 User-facing features MUST provide consistent, intuitive experiences across all interfaces (web, CLI, API). Design patterns and interaction models MUST be unified and documented. All changes affecting user experience MUST undergo design review.
 
 **Requirements:**
+
 - Design system component reuse mandatory for UI
 - Accessibility (WCAG 2.1 AA minimum) verified before release
 - User feedback integrated into feature lifecycle
@@ -49,6 +52,7 @@ User-facing features MUST provide consistent, intuitive experiences across all i
 Performance is a feature. Applications MUST meet defined performance targets for response time, load time, and resource utilization. Performance MUST be measured and monitored in production. Regressions MUST be addressed immediately.
 
 **Requirements:**
+
 - Performance budget: Defined before feature development
 - Monitoring: Real User Monitoring (RUM) metrics tracked
 - Load testing: Required for changes affecting throughput
@@ -70,6 +74,7 @@ Code submission to main branch requires:
 ## Development Workflow
 
 Every pull request MUST:
+
 - Reference a related issue or task
 - Include changes to tests before/alongside implementation
 - Verify impact on user experience if applicable

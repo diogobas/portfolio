@@ -68,7 +68,8 @@ export const projectImages = {
     decorative: true,
     status: 'fallback',
     source: 'Original abstract cover',
-    creditOrPermission: 'Created for this portfolio; used as a safe fallback until an approved project visual is supplied.',
+    creditOrPermission:
+      'Created for this portfolio; used as a safe fallback until an approved project visual is supplied.',
   },
   etikagis: {
     src: '/images/projects/learning.jpg',
@@ -76,7 +77,8 @@ export const projectImages = {
     decorative: true,
     status: 'fallback',
     source: 'Original abstract cover',
-    creditOrPermission: 'Created for this portfolio; used as a safe fallback until an approved project visual is supplied.',
+    creditOrPermission:
+      'Created for this portfolio; used as a safe fallback until an approved project visual is supplied.',
   },
   'taskflow-fullstack': {
     src: '/images/projects/learning.jpg',
@@ -84,7 +86,8 @@ export const projectImages = {
     decorative: true,
     status: 'fallback',
     source: 'Original abstract cover',
-    creditOrPermission: 'Created for this portfolio; used as a safe fallback until an approved project visual is supplied.',
+    creditOrPermission:
+      'Created for this portfolio; used as a safe fallback until an approved project visual is supplied.',
   },
   'json-transformer-api': {
     src: '/images/projects/learning.jpg',
@@ -92,7 +95,8 @@ export const projectImages = {
     decorative: true,
     status: 'fallback',
     source: 'Original abstract cover',
-    creditOrPermission: 'Created for this portfolio; used as a safe fallback until an approved project visual is supplied.',
+    creditOrPermission:
+      'Created for this portfolio; used as a safe fallback until an approved project visual is supplied.',
   },
   deckgame: {
     src: '/images/projects/learning.jpg',
@@ -100,6 +104,7 @@ export const projectImages = {
     decorative: true,
     status: 'fallback',
     source: 'Original abstract cover',
-    creditOrPermission: 'Created for this portfolio; used as a safe fallback until an approved project visual is supplied.',
+    creditOrPermission:
+      'Created for this portfolio; used as a safe fallback until an approved project visual is supplied.',
   },
 } as const satisfies Record<string, ProjectImage>;
