@@ -1,29 +1,57 @@
 ---
 import '../styles/global.css';
+import { resume } from '../data/resume';
 
 interface Props {
   title: string;
   description?: string;
   path?: string;
+  profilePage?: boolean;
 }
 
 const {
   title,
   description = 'Professional portfolio of Diogo Bastos, a senior full-stack software engineer.',
   path = '/',
+  profilePage = false,
 } = Astro.props;
 
-const siteUrl = import.meta.env.PUBLIC_SITE_URL;
-const pageUrl = siteUrl ? new URL(path, siteUrl).href : undefined;
+const siteUrl = (import.meta.env.PUBLIC_SITE_URL || 'https://diogobastos.pages.dev').replace(
+  /\/$/,
+  ''
+);
+const pageUrl = new URL(path, `${siteUrl}/`).href;
+const personId = `${siteUrl}/#person`;
 const personSchema = {
-  '@context': 'https://schema.org',
+  '@id': personId,
   '@type': 'Person',
-  name: 'Diogo Bastos',
-  jobTitle: 'Senior Full-Stack Software Engineer',
-  email: 'mailto:diogovvb@gmail.com',
-  url: pageUrl,
-  sameAs: ['https://www.linkedin.com/in/diogo-bastos/', 'https://github.com/diogobas'],
+  name: resume.identity.name,
+  jobTitle: resume.identity.role,
+  email: `mailto:${resume.identity.email}`,
+  url: resume.identity.portfolio,
+  address: {
+    '@type': 'PostalAddress',
+    addressCountry: resume.identity.location,
+  },
+  sameAs: [resume.identity.linkedin, resume.identity.github],
+  knowsAbout: resume.skills.flatMap((group) => group.items),
 };
+const pageSchema = profilePage
+  ? {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'ProfilePage',
+          '@id': `${pageUrl}#profile-page`,
+          url: pageUrl,
+          name: title,
+          description,
+          mainEntity: { '@id': personId },
+        },
+        personSchema,
+      ],
+    }
+  : { '@context': 'https://schema.org', ...personSchema };
 ---
 
 <!doctype html>
@@ -40,9 +68,9 @@ const personSchema = {
     <meta property="og:site_name" content="Diogo Bastos" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    {pageUrl && <link rel="canonical" href={pageUrl} />}
-    {pageUrl && <meta property="og:url" content={pageUrl} />}
-    <script is:inline type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+    <link rel="canonical" href={pageUrl} />
+    <meta property="og:url" content={pageUrl} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(pageSchema)} />
     <title>{title}</title>
   </head>
   <body>

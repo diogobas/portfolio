@@ -1,17 +1,32 @@
 import { describe, expect, it } from 'vitest';
-import { experiences, profile, socialLinks } from './profile';
+import { careerExperiences, homeExperiences, profile, resume, socialLinks } from './resume';
 
 describe('profile content', () => {
   it('exposes a public email address without a phone number', () => {
     expect(profile.email).toBe('diogovvb@gmail.com');
-    expect(Object.values(profile).join(' ')).not.toMatch(/\+\d[\d\s()-]{7,}/);
+    expect(resume.identity.location).toBe('Canada');
+    expect(JSON.stringify(resume)).not.toMatch(/\+\d[\d\s()-]{7,}/);
   });
 
-  it('keeps the experience list ordered from current to earlier roles', () => {
-    expect(experiences.map((experience) => experience.company)).toEqual([
-      'Pearson Education · eDynamic Learning',
+  it('keeps a single complete chronology and derives the home selection from it', () => {
+    expect(careerExperiences).toBe(resume.experience);
+    expect(resume.experience.map((experience) => experience.company)).toEqual([
+      'Pearson Education - eDynamic Learning',
+      'Fairstone Bank',
       'Houghton Mifflin Harcourt',
-      'TEKsystems · HMH engagement',
+      'TEKsystems - HMH engagement',
+      'Neovation Learning Solutions',
+      'PPI-Multitask',
+      'Dexco (formerly Duratex)',
+      'Otimize-TI - Tecnologia Otimizando Negocios',
+      'Indra',
+      'SENAI Goias',
+      'Sistema Inteligente de Automacao PLUS - SIAPLUS',
+    ]);
+    expect(homeExperiences.map((experience) => experience.company)).toEqual([
+      'Pearson Education - eDynamic Learning',
+      'Houghton Mifflin Harcourt',
+      'TEKsystems - HMH engagement',
       'Neovation Learning Solutions',
     ]);
   });

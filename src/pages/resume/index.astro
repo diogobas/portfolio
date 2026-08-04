@@ -1,0 +1,108 @@
+---
+import { resume } from '../../data/resume';
+import SiteLayout from '../../layouts/SiteLayout.astro';
+---
+
+<SiteLayout
+  title="Résumé | Diogo Bastos"
+  description="ATS-friendly résumé for Diogo Bastos, a senior full-stack software engineer in Canada."
+  path="/resume/"
+  profilePage
+>
+  <main id="main-content" class="resume-page">
+    <a
+      id="ats-resume-download"
+      class="ats-resume-download"
+      href="/resume/diogo-bastos-resume-ats.pdf"
+      download
+    >
+      Download ATS-friendly PDF
+    </a>
+    <nav class="resume-screen-nav" aria-label="Résumé navigation">
+      <a class="archive-back-link" href="/">← Back to portfolio</a>
+      <div class="resume-actions">
+        <a class="text-link" href="/experience/">View career history</a>
+        <a class="text-link" href="/resume/diogo-bastos-resume.pdf" download>
+          Download résumé PDF <span aria-hidden="true">↓</span>
+        </a>
+      </div>
+    </nav>
+
+    <article class="resume-document" aria-labelledby="resume-name">
+      <header class="resume-document__header">
+        <h1 id="resume-name">{resume.identity.name}</h1>
+        <p class="resume-title">{resume.identity.role}</p>
+        <ul class="resume-contact-list" aria-label="Contact information">
+          <li>{resume.identity.location}</li>
+          <li><a href={`mailto:${resume.identity.email}`}>{resume.identity.email}</a></li>
+          <li><a href={resume.identity.portfolio}>{resume.identity.portfolio}</a></li>
+          <li><a href={resume.identity.linkedin}>{resume.identity.linkedin}</a></li>
+          <li><a href={resume.identity.github}>{resume.identity.github}</a></li>
+        </ul>
+      </header>
+
+      <section class="resume-section" aria-labelledby="professional-summary">
+        <h2 id="professional-summary">Professional Summary</h2>
+        <p>{resume.summary}</p>
+      </section>
+
+      <section class="resume-section" aria-labelledby="core-skills">
+        <h2 id="core-skills">Core Skills</h2>
+        <dl class="resume-skills-list">
+          {
+            resume.skills.map((group) => (
+              <div>
+                <dt>{group.category}</dt>
+                <dd>{group.items.join(', ')}</dd>
+              </div>
+            ))
+          }
+        </dl>
+      </section>
+
+      <section class="resume-section" aria-labelledby="professional-experience">
+        <h2 id="professional-experience">Professional Experience</h2>
+        <ol class="resume-experience-list">
+          {
+            resume.experience.map((experience, index) => (
+              <li class:list={{ 'resume-print-page-break': index === 5 }}>
+                <article>
+                  <p class="resume-experience-period">{experience.period}</p>
+                  <h3>{experience.role}</h3>
+                  <p class="resume-employer">
+                    {experience.company} | {experience.location}
+                  </p>
+                  <ul class="resume-highlights">
+                    {experience.highlights.map((highlight) => (
+                      <li>{highlight}</li>
+                    ))}
+                  </ul>
+                </article>
+              </li>
+            ))
+          }
+        </ol>
+      </section>
+
+      <section class="resume-section" aria-labelledby="education">
+        <h2 id="education">Education</h2>
+        <div class="resume-education">
+          {
+            resume.education.map((education) => (
+              <div class="resume-education-entry">
+                <p>
+                  <strong>{education.credential}</strong>
+                </p>
+                <p>{education.institution}</p>
+              </div>
+            ))
+          }
+          <h3>Training</h3>
+          <ul>
+            {resume.training.map((training) => <li>{training}</li>)}
+          </ul>
+        </div>
+      </section>
+    </article>
+  </main>
+</SiteLayout>

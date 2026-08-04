@@ -7,7 +7,7 @@
 
 > **Constitution Compliance**: This spec must address Code Quality, Testing Standards, UX Consistency, and Performance per Portfolio Constitution (1.0.0)
 
-## User Scenarios & Testing *(mandatory)*
+## User Scenarios & Testing _(mandatory)_
 
 ### User Story 1 - Browse Project Portfolio (Priority: P1)
 
@@ -98,7 +98,7 @@ A visitor can filter or search projects by technology, company, or keywords to q
 - What if AI-generated artwork fails to load? → Fall back to downloaded project images gracefully
 - How does the portfolio respond on very slow networks? → Progressive enhancement: text content first, images load async
 
-## Requirements *(mandatory)*
+## Requirements _(mandatory)_
 
 ### Functional Requirements
 
@@ -150,7 +150,7 @@ A visitor can filter or search projects by technology, company, or keywords to q
   - `model`: AI model used for generation
   - `generatedAt`: Timestamp of generation
 
-## Success Criteria *(mandatory)*
+## Success Criteria _(mandatory)_
 
 - **Portfolio Discoverability**: All 4 projects are visible and accessible without requiring navigation beyond 2 clicks from homepage
 - **Page Load Performance**: Homepage loads in under 2 seconds on 4G network (p95 metric); project images load in under 3 seconds total

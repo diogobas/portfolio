@@ -6,5 +6,5 @@ export default tseslint.config(
     ignores: ['.astro/', 'dist/', 'node_modules/', 'playwright-report/', 'test-results/', 'specs/'],
   },
   ...tseslint.configs.recommended,
-  ...astro.configs.recommended,
+  ...astro.configs.recommended
 );

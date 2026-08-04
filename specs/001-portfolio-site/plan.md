@@ -15,55 +15,58 @@ Build a responsive, accessible portfolio website showcasing 4 professional proje
 **Testing**: Jest + React Testing Library (unit/component), Playwright (integration/E2E)  
 **Target Platform**: Web browsers (Chrome, Firefox, Safari, Edge) - responsive design (375px-1920px+)  
 **Project Type**: Single-page web application (SPA) with client-side routing  
-**Performance Goals**: 
-  - Homepage load: <2 seconds (p95) on 4G
-  - Project image load: <3 seconds total (p95)
-  - Largest Contentful Paint (LCP): <2.5s
-  - First Input Delay (FID): <100ms
-  - Cumulative Layout Shift (CLS): <0.1
-  
-**Constraints**: 
-  - <200ms response time for page navigation (p95)
-  - <100KB initial bundle size (gzipped)
-  - WCAG 2.1 AA accessibility compliance
-  - 80% code coverage minimum for new code
-  - Zero ESLint warnings in production builds
-  
-**Scale/Scope**: 
-  - 4 projects displayed initially
-  - 5 main pages (Home, 4x Project Details, About/Resume)
-  - ~15-20 reusable React components
-  - ~1000-1500 lines of component code
-  - ~2000-3000 lines of test code
+**Performance Goals**:
+
+- Homepage load: <2 seconds (p95) on 4G
+- Project image load: <3 seconds total (p95)
+- Largest Contentful Paint (LCP): <2.5s
+- First Input Delay (FID): <100ms
+- Cumulative Layout Shift (CLS): <0.1
+
+**Constraints**:
+
+- <200ms response time for page navigation (p95)
+- <100KB initial bundle size (gzipped)
+- WCAG 2.1 AA accessibility compliance
+- 80% code coverage minimum for new code
+- Zero ESLint warnings in production builds
+
+**Scale/Scope**:
+
+- 4 projects displayed initially
+- 5 main pages (Home, 4x Project Details, About/Resume)
+- ~15-20 reusable React components
+- ~1000-1500 lines of component code
+- ~2000-3000 lines of test code
 
 ## Constitution Check
 
-*GATE: Must pass before Phase 1 design. Re-check after implementation.*
+_GATE: Must pass before Phase 1 design. Re-check after implementation._
 
 **Portfolio Constitution Principles** (1.0.0):
 
-- ✅ **Code Quality**: 
+- ✅ **Code Quality**:
   - TypeScript strict mode enabled
   - ESLint + Prettier pre-commit hooks configured
   - Minimum 2-approval code review process
   - Component cyclomatic complexity <10
   - JSDoc comments on all public components/utils
 
-- ✅ **Testing Standards**: 
+- ✅ **Testing Standards**:
   - TDD mandatory: Tests written before implementation
   - 80% coverage minimum for new code
   - Unit tests: Jest with React Testing Library
   - Integration tests: Playwright for critical user flows (US1-US3)
   - All tests passing before merge to main
 
-- ✅ **User Experience Consistency**: 
+- ✅ **User Experience Consistency**:
   - Material-UI design system ensures consistent styling
   - Component library with 15-20 reusable components
   - WCAG 2.1 AA accessibility verified (keyboard nav, screen readers, contrast)
   - Consistent error messages (user-friendly, actionable)
   - Unified typography and spacing system
 
-- ✅ **Performance Requirements**: 
+- ✅ **Performance Requirements**:
   - Performance budget: Homepage <2s (4G p95), images <3s
   - Monitoring: Lighthouse CI integration, Core Web Vitals tracking
   - Load testing: Webpack bundle analyzer for optimization
@@ -71,6 +74,7 @@ Build a responsive, accessible portfolio website showcasing 4 professional proje
   - Code splitting: Route-based lazy loading for project details
 
 **Compliance Checkpoints**:
+
 - [ ] ESLint config created with strict rules
 - [ ] TypeScript strict mode enabled in tsconfig.json
 - [ ] Jest + React Testing Library configured with 80% coverage threshold
@@ -233,46 +237,54 @@ portfolio/
 ## Technology Stack Rationale
 
 ### Frontend Framework: React 19
+
 - **Why**: Matches your 20 years of experience with modern web frameworks; React expertise evident in resume
 - **Version**: Latest stable (19.x) for latest features (React Compiler, better error boundaries)
 - **Alternatives Considered**: Vue 3 (similar, but less familiar), Next.js (overkill for static portfolio)
 - **Decision**: React 19 provides balance of productivity, ecosystem maturity, and performance
 
 ### Styling & Components: Material-UI 5
+
 - **Why**: Pre-built, accessible component library aligned with WCAG 2.1 AA requirements
 - **Features**: Theming system, responsive breakpoints, built-in accessibility (ARIA, keyboard nav)
 - **Alternatives Considered**: Tailwind CSS (lower-level, more control but more code); Chakra UI (good alternative, but MUI has better documentation)
 - **Decision**: MUI provides design system consistency + accessibility out-of-the-box
 
 ### Build Tool: Vite
+
 - **Why**: Fast development server, optimized production bundles, excellent TypeScript support
 - **Performance**: 300-400ms dev server startup vs 2-5s with Create React App
 - **Alternatives Considered**: Webpack (Create React App - older, slower); Turbopack (Rust-based, experimental)
 - **Decision**: Vite balances speed with stability; now standard in React ecosystem
 
 ### Type Safety: TypeScript
+
 - **Why**: Mandatory per Constitution (Code Quality principle); compile-time safety for complex state
 - **Config**: Strict mode enabled; all `any` types forbidden
 - **Decision**: Already using TypeScript in resume experience; essential for portfolio codebase
 
 ### Testing: Jest + React Testing Library + Playwright
+
 - **Unit Tests**: Jest + React Testing Library for component testing (80% coverage)
 - **Integration Tests**: Playwright for E2E user flows (critical paths US1-US3)
 - **Why**: Industry standard for React; Playwright provides cross-browser E2E testing
 - **Decision**: Comprehensive testing strategy aligns with Constitution (Testing Standards principle)
 
 ### Data Fetching: TanStack Query
+
 - **Why**: Handles caching, refetching, and state management for async data
 - **Use**: Fetch projects.json and resume.json with built-in stale-time and refetch logic
 - **Alternative**: Direct fetch() calls (simpler but less robust error handling)
 - **Decision**: TanStack Query adds resilience for slow networks
 
 ### Routing: React Router DOM 6
+
 - **Why**: Standard routing solution; declarative, composable routes
 - **Features**: Lazy loading for project detail pages, navigation state management
 - **Decision**: Industry standard; aligns with React 19 ecosystem
 
 ### Animation: Framer Motion
+
 - **Why**: Smooth page transitions, image loading animations (fade-in for artwork)
 - **Use**: Page transitions on route changes, stagger animations for project cards
 - **Decision**: Enhances visual polish without significantly impacting performance
@@ -280,8 +292,9 @@ portfolio/
 ## Performance Strategy
 
 ### Initial Load (<2s on 4G p95)
+
 1. **Code Splitting**: Route-based lazy loading for project detail pages (only load when accessed)
-2. **Image Optimization**: 
+2. **Image Optimization**:
    - Download images once at build time, store in `public/`
    - Serve via CDN or optimized HTTP caching
    - Use responsive images (srcset) for different breakpoints
@@ -297,6 +310,7 @@ portfolio/
    - Cumulative Layout Shift (CLS): <0.1
 
 ### Project Images Load (<3s total, p95)
+
 1. **Image Delivery**:
    - Store downloaded images in `public/project-images/`
    - Implement `<ImageWithFallback />` component with retry logic
@@ -309,6 +323,7 @@ portfolio/
    - CSS object-fit for consistent aspect ratios
 
 ### Runtime Performance
+
 1. **Memoization**: Use `React.memo()` for ProjectCard, ProjectDetail (prevent re-renders)
 2. **State Management**: Local state for component-level UI (filters, sorting); TanStack Query for shared data
 3. **Animations**: Use CSS transforms + opacity (GPU-accelerated) in Framer Motion
@@ -317,6 +332,7 @@ portfolio/
 ## Testing Strategy
 
 ### Unit Tests (Jest + React Testing Library)
+
 - **Target**: 80% coverage minimum for new code
 - **Coverage Areas**:
   - Components: ProjectCard, ProjectGrid, ResumeSection, ImageWithFallback (render, click handlers, props validation)
@@ -327,6 +343,7 @@ portfolio/
 - **Example**: Test that ProjectCard displays project title + technologies, not that it uses MUI Card
 
 ### Integration Tests (Playwright)
+
 - **Scope**: Critical user stories (US1, US2, US3)
 - **Test Cases**:
   - **US1**: Load homepage → scroll → see all 4 projects with images
@@ -336,6 +353,7 @@ portfolio/
 - **Accessibility**: Run axe accessibility audit during tests
 
 ### E2E Tests (Playwright)
+
 - **Test Cases**:
   - Full navigation flow (homepage → projects → details → resume → back to home)
   - Keyboard navigation (Tab through all interactive elements)
@@ -344,6 +362,7 @@ portfolio/
 - **Performance**: Lighthouse CI integration to catch performance regressions
 
 ### Test Coverage Targets
+
 - Components: 85% (logic + user interactions)
 - Hooks: 90% (all branches, edge cases)
 - Utils: 95% (pure functions, all edge cases)
@@ -363,25 +382,29 @@ portfolio/
 ## Code Quality Standards
 
 ### ESLint Configuration
+
 - Extends: `eslint:recommended`, `plugin:react/recommended`, `plugin:@typescript-eslint/recommended`
 - Rules:
   - Cyclomatic complexity: max 10 per function
   - Line length: max 120 characters
   - Imports: organized, no unused imports
   - Variables: camelCase for functions/variables, PascalCase for components/types
-  
+
 ### TypeScript Strict Mode
+
 - `strict: true` in tsconfig.json (all `any` types forbidden)
 - `noImplicitAny`, `strictNullChecks`, `strictFunctionTypes` enabled
 - All functions typed; return types explicit
 
 ### Code Style
+
 - Prettier formatting (automatic on save)
 - Component naming: PascalCase (ProjectCard.tsx)
 - Const/let/var: prefer const, then let; never var
 - JSDoc comments on all public functions + components
 
 ### Pre-Commit Hooks (Husky)
+
 - Lint staged files (ESLint)
 - Type-check modified TypeScript files
 - Format code (Prettier)
@@ -390,25 +413,26 @@ portfolio/
 ## Data Model
 
 ### Projects Data Structure
+
 ```typescript
 interface Project {
-  id: string;                          // "classcraft"
-  name: string;                        // "Classcraft"
-  company: string;                     // "HMH"
-  brief: string;                       // 1-2 sentence summary
-  description: string;                 // Full description
-  technologies: string[];              // ["React", "AI Summarization"]
-  imageUrl: string;                    // "project-images/classcraft.jpg"
-  referenceUrl?: string;               // HMH reference URL
-  demoUrl?: string;                    // Demo link if available
-  artwork?: string;                    // "project-artwork/classcraft-artwork.png"
+  id: string; // "classcraft"
+  name: string; // "Classcraft"
+  company: string; // "HMH"
+  brief: string; // 1-2 sentence summary
+  description: string; // Full description
+  technologies: string[]; // ["React", "AI Summarization"]
+  imageUrl: string; // "project-images/classcraft.jpg"
+  referenceUrl?: string; // HMH reference URL
+  demoUrl?: string; // Demo link if available
+  artwork?: string; // "project-artwork/classcraft-artwork.png"
 }
 
 interface Resume {
-  profile: string;                     // Professional summary
-  experience: Experience[];            // Work history
-  education: Education[];              // Education entries
-  skills: string[];                    // Technical skills
+  profile: string; // Professional summary
+  experience: Experience[]; // Work history
+  education: Education[]; // Education entries
+  skills: string[]; // Technical skills
   contact: {
     email: string;
     phone: string;
@@ -434,11 +458,13 @@ interface Education {
 ```
 
 ### projects.json Structure
+
 - 4 projects (Classcraft, Session Organizer, Coachly, Teacher Success Pathways)
 - Stored in `src/data/projects.json`
 - Validated against TypeScript types at compile time
 
 ### resume.json Structure
+
 - Parsed from resume.md at build time or manually maintained
 - Stored in `src/data/resume.json`
 - Contains professional summary, 3-4 highlighted experiences, education, key skills
@@ -446,6 +472,7 @@ interface Education {
 ## Development Workflow
 
 ### Local Development
+
 1. `pnpm install` - Install dependencies
 2. `pnpm dev` - Start Vite dev server (http://localhost:5173)
 3. `pnpm test` - Run Jest unit tests in watch mode
@@ -454,12 +481,14 @@ interface Education {
 6. `pnpm preview` - Preview production build locally
 
 ### Build & Deployment
+
 1. **Build Command**: `vite build` → outputs to `dist/`
 2. **Output**: Single HTML file + CSS + JS bundles
 3. **Deployment**: Static hosting (Vercel, Netlify, GitHub Pages)
 4. **CI/CD**: GitHub Actions workflow (lint → test → build → deploy)
 
 ### Version Control Conventions
+
 - Commit messages: `feat:`, `fix:`, `chore:`, `docs:`, `test:` prefixes
 - Branch naming: `001-portfolio-site` (already created)
 - PR reviews: Minimum 1 approval; CI checks passing
@@ -468,12 +497,12 @@ interface Education {
 
 No Constitution violations identified. This is a straightforward frontend portfolio site with clear scope and no organizational-only libraries.
 
-| Item | Scope Justification |
-|------|-------------------|
-| React + MUI stack | Justified by resume expertise; aligns with Constitution Code Quality (TypeScript, linting, testing) |
-| 4 projects display | Per spec requirement; easily extensible to more projects |
-| TanStack Query | Adds resilience for slow networks; improves UX on 4G |
-| Playwright E2E tests | Critical for validating US1-US3 user flows on 4G networks |
+| Item                 | Scope Justification                                                                                 |
+| -------------------- | --------------------------------------------------------------------------------------------------- |
+| React + MUI stack    | Justified by resume expertise; aligns with Constitution Code Quality (TypeScript, linting, testing) |
+| 4 projects display   | Per spec requirement; easily extensible to more projects                                            |
+| TanStack Query       | Adds resilience for slow networks; improves UX on 4G                                                |
+| Playwright E2E tests | Critical for validating US1-US3 user flows on 4G networks                                           |
 
 ## Next Steps
 

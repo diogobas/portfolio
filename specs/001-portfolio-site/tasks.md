@@ -11,7 +11,8 @@
 
 This document breaks down the implementation plan into actionable tasks organized by priority and dependency. Tasks are grouped into phases to ensure logical build order and minimize blocking dependencies.
 
-**Estimated Scope**: 
+**Estimated Scope**:
+
 - Phase 0 (Setup): 1-2 days
 - Phase 1 (Foundation): 3-4 days
 - Phase 2-6 (Features): 2-3 days per phase (5-8 days total)
@@ -22,6 +23,7 @@ This document breaks down the implementation plan into actionable tasks organize
 ## Task Legend
 
 **Status Codes**:
+
 - `TODO`: Not started
 - `IN-PROGRESS`: Currently being worked on
 - `BLOCKED`: Waiting on dependency
@@ -29,12 +31,14 @@ This document breaks down the implementation plan into actionable tasks organize
 - `DONE`: Merged and verified
 
 **Priority**:
+
 - 🔴 **Critical**: Blocks other tasks or must be completed for MVP
 - 🟠 **High**: Important for user stories but has some wiggle room
 - 🟡 **Medium**: Nice to have, can be deferred to post-MVP
 - 🟢 **Low**: Polish/optimization, post-MVP
 
 **Ownership** (fill in as team assigns):
+
 - [ASSIGN]: Unassigned, needs owner
 - [NAME]: Person assigned to task
 
@@ -43,16 +47,18 @@ This document breaks down the implementation plan into actionable tasks organize
 ## Phase 0: Project Setup
 
 ### 0.1 Initialize Project Structure
+
 **Priority**: 🔴 Critical  
 **Status**: ✅ DONE  
 **Owner**: Copilot Agent  
 **Dependency**: None  
 **Estimated**: 2-4 hours
 
-**Description**: 
+**Description**:
 Set up Vite + React 19 project with TypeScript strict mode, Material-UI, and development tools.
 
 **Checklist**:
+
 - [ ] Initialize Vite project: `pnpm create vite portfolio --template react-ts`
 - [ ] Install core dependencies:
   - React 19, React DOM 19
@@ -75,6 +81,7 @@ Set up Vite + React 19 project with TypeScript strict mode, Material-UI, and dev
 - [ ] Verify dev server runs: `pnpm dev`
 
 **Acceptance Criteria**:
+
 - ✅ `pnpm dev` starts server at http://localhost:5173
 - ✅ `pnpm typecheck` passes with no errors
 - ✅ `pnpm lint` shows no critical errors
@@ -82,6 +89,7 @@ Set up Vite + React 19 project with TypeScript strict mode, Material-UI, and dev
 - ✅ TypeScript strict mode enforced (no `any` types)
 
 **Files Created/Modified**:
+
 - package.json (dependencies, scripts)
 - tsconfig.json (strict mode)
 - vite.config.ts (Vite configuration)
@@ -92,16 +100,18 @@ Set up Vite + React 19 project with TypeScript strict mode, Material-UI, and dev
 ---
 
 ### 0.2 Set Up Testing Infrastructure
+
 **Priority**: 🔴 Critical  
 **Status**: ✅ DONE  
 **Owner**: Copilot Agent  
 **Dependency**: 0.1  
 **Estimated**: 4-6 hours
 
-**Description**: 
+**Description**:
 Configure Jest, React Testing Library, and Playwright for comprehensive testing strategy.
 
 **Checklist**:
+
 - [ ] Configure Jest:
   - jest.config.js
   - setupTests.ts (test utilities)
@@ -130,6 +140,7 @@ Configure Jest, React Testing Library, and Playwright for comprehensive testing 
   - E2E test template
 
 **Acceptance Criteria**:
+
 - ✅ `pnpm test` runs Jest tests successfully
 - ✅ `pnpm test:watch` enters watch mode
 - ✅ `pnpm test:coverage` generates coverage report
@@ -138,6 +149,7 @@ Configure Jest, React Testing Library, and Playwright for comprehensive testing 
 - ✅ All tests pass with coverage >75%
 
 **Files Created**:
+
 - jest.config.js
 - jest.setup.ts
 - playwright.config.ts
@@ -149,16 +161,18 @@ Configure Jest, React Testing Library, and Playwright for comprehensive testing 
 ---
 
 ### 0.3 Configure Material-UI Theme
+
 **Priority**: 🔴 Critical  
 **Status**: ✅ DONE  
 **Owner**: Copilot Agent  
 **Dependency**: 0.1  
 **Estimated**: 2-3 hours
 
-**Description**: 
+**Description**:
 Set up Material-UI theming for design consistency, accessibility compliance (WCAG 2.1 AA), and responsive breakpoints.
 
 **Checklist**:
+
 - [ ] Create theme configuration:
   - Primary/secondary color palette
   - Typography scale (font sizes, weights)
@@ -176,6 +190,7 @@ Set up Material-UI theming for design consistency, accessibility compliance (WCA
 - [ ] Test theme on multiple devices/browsers
 
 **Acceptance Criteria**:
+
 - ✅ Theme file created (src/theme/theme.ts or src/theme/index.ts)
 - ✅ All MUI components render with theme colors
 - ✅ Color contrast validated (axe audit tool)
@@ -184,6 +199,7 @@ Set up Material-UI theming for design consistency, accessibility compliance (WCA
 - ✅ Dark mode toggle works (if implemented)
 
 **Files Created**:
+
 - src/theme/theme.ts
 - src/theme/palette.ts (color definitions)
 - src/theme/typography.ts (font settings)
@@ -194,16 +210,18 @@ Set up Material-UI theming for design consistency, accessibility compliance (WCA
 ## Phase 1: Foundational Components & Services
 
 ### 1.1 Create Layout Components
+
 **Priority**: 🔴 Critical  
 **Status**: ✅ DONE  
 **Owner**: Copilot Agent  
 **Dependency**: 0.3  
 **Estimated**: 3-4 hours
 
-**Description**: 
+**Description**:
 Build reusable layout components (Header, Navigation, Footer, Layout wrapper).
 
 **Checklist**:
+
 - [x] **Header.tsx** ✅:
   - Display portfolio title/subtitle
   - Responsive on mobile (hamburger menu integration)
@@ -211,7 +229,7 @@ Build reusable layout components (Header, Navigation, Footer, Layout wrapper).
   - Props: title, subtitle, onMenuClick
   - Test: Render with props, click events
   - Accessibility: Semantic <header>, ARIA labels
-  
+
 - [x] **Navigation.tsx** ✅:
   - Link to Home, Projects, Resume, Contact (as applicable)
   - Active link highlighting (React Router)
@@ -219,7 +237,7 @@ Build reusable layout components (Header, Navigation, Footer, Layout wrapper).
   - Props: links[], isOpen, onClose
   - Test: Link navigation, active state
   - Accessibility: Semantic <nav>, keyboard nav
-  
+
 - [x] **Footer.tsx** ✅:
   - Copyright notice
   - Social links (GitHub, LinkedIn, etc. from resume)
@@ -227,7 +245,7 @@ Build reusable layout components (Header, Navigation, Footer, Layout wrapper).
   - Props: none required, data from resume.json
   - Test: Render, link verification
   - Accessibility: Semantic <footer>, link targets
-  
+
 - [x] **Layout.tsx** ✅:
   - Wrapper component combining Header, Navigation, Footer
   - Main content area
@@ -236,6 +254,7 @@ Build reusable layout components (Header, Navigation, Footer, Layout wrapper).
   - Responsive layout grid
 
 **Acceptance Criteria**:
+
 - ✅ All 4 layout components render correctly
 - ✅ Header/Navigation responsive (mobile/tablet/desktop)
 - ✅ Links navigate properly (React Router integration tested)
@@ -244,6 +263,7 @@ Build reusable layout components (Header, Navigation, Footer, Layout wrapper).
 - ✅ Components render with Material-UI theme
 
 **Files Created**:
+
 - src/components/layout/Header.tsx
 - src/components/layout/Navigation.tsx
 - src/components/layout/Footer.tsx
@@ -257,16 +277,18 @@ Build reusable layout components (Header, Navigation, Footer, Layout wrapper).
 ---
 
 ### 1.2 Create Common/Utility Components
+
 **Priority**: 🔴 Critical  
 **Status**: ✅ DONE  
 **Owner**: Copilot Agent  
 **Dependency**: 0.3  
 **Estimated**: 4-5 hours
 
-**Description**: 
+**Description**:
 Build reusable utility components used across the application.
 
 **Checklist**:
+
 - [ ] **ImageWithFallback.tsx**:
   - Display image with error handling fallback
   - Props: src, alt, fallbackSrc, width, height, onError, onLoad, responsive
@@ -274,7 +296,7 @@ Build reusable utility components used across the application.
   - Lazy loading (optional)
   - Test: Render, error states, fallback display
   - Accessibility: Alt text, lazy loading semantics
-  
+
 - [ ] **ErrorBoundary.tsx**:
   - Catch render errors, prevent white-screen crashes
   - Display user-friendly error message
@@ -282,32 +304,33 @@ Build reusable utility components used across the application.
   - Props: children, fallback (optional)
   - Test: Render with error-throwing child, recovery
   - Logging: Console + optional service
-  
+
 - [ ] **LoadingSpinner.tsx**:
   - MUI CircularProgress wrapper
   - Props: size ("small" | "medium" | "large"), message
   - Test: Render with different sizes
   - Accessibility: aria-label, sr-only text
-  
+
 - [ ] **ErrorMessage.tsx**:
   - MUI Alert wrapper for error messages
   - Props: message, severity, onRetry, onDismiss
   - Dismissible variant
   - Test: Render, dismiss, retry callback
   - Accessibility: ARIA alerts
-  
+
 - [ ] **Badge.tsx**:
   - MUI Chip wrapper for tech tags/badges
   - Props: label, onDelete (optional), variant, color
   - Usage: Technology tags, category badges
   - Test: Render, delete callback
-  
+
 - [ ] **PageContainer.tsx**:
   - Standard page wrapper with consistent padding/max-width
   - Props: children, title, description, maxWidth
   - Responsive spacing
 
 **Acceptance Criteria**:
+
 - ✅ All 6 utility components render correctly
 - ✅ Error states handled gracefully
 - ✅ Accessibility audit passes (Axe)
@@ -316,6 +339,7 @@ Build reusable utility components used across the application.
 - ✅ Components properly exported and documented
 
 **Files Created**:
+
 - src/components/common/ImageWithFallback.tsx
 - src/components/common/ErrorBoundary.tsx
 - src/components/common/LoadingSpinner.tsx
@@ -328,16 +352,18 @@ Build reusable utility components used across the application.
 ---
 
 ### 1.3 Create Data Services
+
 **Priority**: 🔴 Critical  
 **Status**: ✅ DONE  
 **Owner**: Copilot Agent  
 **Dependency**: None  
 **Estimated**: 3-4 hours
 
-**Description**: 
+**Description**:
 Implement data fetching services for projects and resume data.
 
 **Checklist**:
+
 - [x] **projectService.ts** ✅:
   - getProjects(): Promise<Project[]> - Fetch all projects
   - getProjectById(id: string): Promise<Project> - Fetch single project
@@ -349,7 +375,7 @@ Implement data fetching services for projects and resume data.
   - getProjectsByStatus(status): Filter by completion status
   - Error handling: Try/catch, meaningful error messages
   - Simulated API delays for realistic UX
-  
+
 - [x] **resumeService.ts** ✅:
   - getResume(): Promise<Resume> - Fetch complete resume
   - getExperience(): Promise<Experience[]> - Get work history
@@ -360,7 +386,7 @@ Implement data fetching services for projects and resume data.
   - getSocialLinks(): Get social media links
   - getTimeline(): Get years of experience and milestones
   - Error handling: Validation, null checks
-  
+
 - [x] **Type definitions** ✅:
   - src/types/index.ts - All TypeScript interfaces
   - Technology, ProjectArtwork, Project, Contact, Experience, Education
@@ -368,6 +394,7 @@ Implement data fetching services for projects and resume data.
   - Ensure TypeScript strict mode compliance (no `any` types)
 
 **Acceptance Criteria**:
+
 - ✅ All service methods return correct data types
 - ✅ Error handling works (invalid IDs, network errors)
 - ✅ JSON data files valid and match types
@@ -376,6 +403,7 @@ Implement data fetching services for projects and resume data.
 - ✅ Services are framework-agnostic (testable independently)
 
 **Files Created**:
+
 - src/services/projectService.ts
 - src/services/resumeService.ts
 - src/data/projects.json
@@ -390,16 +418,18 @@ Implement data fetching services for projects and resume data.
 ---
 
 ### 1.4 Create Custom Hooks
+
 **Priority**: 🔴 Critical  
 **Status**: ✅ DONE  
 **Owner**: Copilot Agent  
 **Dependency**: 1.3  
 **Estimated**: 2-3 hours
 
-**Description**: 
+**Description**:
 Build custom React hooks for data fetching and responsive design.
 
 **Checklist**:
+
 - [x] **useProjects() hooks** ✅:
   - useProjects(): Fetch all projects using TanStack Query
   - useProjectById(id): Get single project
@@ -411,7 +441,7 @@ Build custom React hooks for data fetching and responsive design.
   - Returns: UseQueryResult with data, isLoading, error, refetch
   - Cache strategy: 3-5 minute stale time (dynamic content)
   - Garbage collection: 5-10 minutes
-  
+
 - [x] **useResume() hooks** ✅:
   - useResume(): Fetch complete resume
   - useResumeProfile(): Get profile summary
@@ -427,7 +457,7 @@ Build custom React hooks for data fetching and responsive design.
   - useLanguages(): Get spoken languages
   - useTimeline(): Get experience timeline/milestones
   - Cache strategy: 10 minute stale time (static content)
-  
+
 - [x] **useMediaQuery() hooks** ✅:
   - useMediaQuery(breakpoint): Check if breakpoint matches
   - useIsMobile(): Check if mobile size (down to 'sm')
@@ -439,6 +469,7 @@ Build custom React hooks for data fetching and responsive design.
   - Returns: boolean or generic value type
 
 **Acceptance Criteria**:
+
 - ✅ All hooks work correctly in components
 - ✅ TanStack Query integration functional
 - ✅ Media queries respond to breakpoint changes
@@ -449,6 +480,7 @@ Build custom React hooks for data fetching and responsive design.
 - ✅ TypeScript types explicit (no `any`)
 
 **Files Created**:
+
 - src/hooks/useProjects.ts
 - src/hooks/useResume.ts
 - src/hooks/useMediaQuery.ts
@@ -463,16 +495,18 @@ Build custom React hooks for data fetching and responsive design.
 ## Phase 2: Project Display Components
 
 ### 2.1 Create Project Grid & Card Components
+
 **Priority**: 🔴 Critical  
 **Status**: 🔄 IN-PROGRESS  
 **Owner**: Copilot Agent  
 **Dependency**: 1.1, 1.2, 1.3, 1.4  
 **Estimated**: 4-5 hours
 
-**Description**: 
+**Description**:
 Build project display components for browsing portfolio.
 
 **Checklist**:
+
 - [ ] **ProjectCard.tsx**:
   - Display single project: image, title, company, brief, technologies
   - Props: project, onCardClick, showArtwork (optional), variant
@@ -481,7 +515,7 @@ Build project display components for browsing portfolio.
   - Responsive: Mobile-optimized image size
   - Test: Render, click event, props validation
   - Accessibility: Keyboard nav, alt text, ARIA labels
-  
+
 - [ ] **ProjectGrid.tsx**:
   - Display projects in responsive grid (1→2→3+ columns)
   - Props: projects[], onProjectClick, isLoading, error, filterTag (optional)
@@ -490,7 +524,7 @@ Build project display components for browsing portfolio.
   - Empty state: "No projects found" message
   - Test: Grid layout, loading/error states
   - Accessibility: Grid semantics, keyboard navigation
-  
+
 - [ ] **ProjectTechnologies.tsx**:
   - Display technology tags for a project
   - Props: technologies[], variant ("inline" | "list" | "grid"), onClick (optional)
@@ -500,6 +534,7 @@ Build project display components for browsing portfolio.
   - Accessibility: keyboard selectable
 
 **Acceptance Criteria**:
+
 - ✅ ProjectCard renders with all project data
 - ✅ ProjectGrid displays projects in responsive columns
 - ✅ Loading and error states display correctly
@@ -510,6 +545,7 @@ Build project display components for browsing portfolio.
 - ✅ Mobile responsive (1 column on mobile)
 
 **Files Created**:
+
 - src/components/projects/ProjectCard.tsx
 - src/components/projects/ProjectGrid.tsx
 - src/components/projects/ProjectTechnologies.tsx
@@ -521,16 +557,18 @@ Build project display components for browsing portfolio.
 ---
 
 ### 2.2 Create Project Detail Components
+
 **Priority**: 🔴 Critical  
 **Status**: TODO  
 **Owner**: [ASSIGN]  
 **Dependency**: 1.1, 1.2, 1.4, 2.1  
 **Estimated**: 4-6 hours
 
-**Description**: 
+**Description**:
 Build detailed project view components for single project page.
 
 **Checklist**:
+
 - [ ] **ProjectHeader.tsx**:
   - Display project name, company, artwork/image
   - Props: project, showArtwork (optional)
@@ -538,7 +576,7 @@ Build detailed project view components for single project page.
   - Responsive: Image size adapts to viewport
   - Test: Render with image/artwork, fallback
   - Accessibility: Image alt text, semantic HTML
-  
+
 - [ ] **ProjectLinks.tsx**:
   - Display external links (reference URL, demo URL)
   - Props: project
@@ -546,14 +584,14 @@ Build detailed project view components for single project page.
   - Buttons: MUI buttons with appropriate styling
   - Test: Links render, target="_blank" set
   - Accessibility: Proper link semantics
-  
+
 - [ ] **ProjectDescription.tsx**:
   - Display full project description
   - Props: description (string), formattedDescription (optional)
   - Support markdown (optional)
   - Test: Render long text, formatting
   - Accessibility: Semantic HTML, readable line length
-  
+
 - [ ] **RelatedProjects.tsx**:
   - Show 3-4 related projects based on technology
   - Props: project, allProjects
@@ -563,6 +601,7 @@ Build detailed project view components for single project page.
   - Accessibility: Keyboard nav
 
 **Acceptance Criteria**:
+
 - ✅ Project detail renders all components
 - ✅ Images display with fallback strategy
 - ✅ External links work and open in new tab
@@ -572,6 +611,7 @@ Build detailed project view components for single project page.
 - ✅ Unit tests written (80% coverage)
 
 **Files Created**:
+
 - src/components/projects/ProjectHeader.tsx
 - src/components/projects/ProjectLinks.tsx
 - src/components/projects/ProjectDescription.tsx
@@ -586,16 +626,18 @@ Build detailed project view components for single project page.
 ## Phase 3: Resume Display Components
 
 ### 3.1 Create Resume Section Components
+
 **Priority**: 🟠 High  
 **Status**: TODO  
 **Owner**: [ASSIGN]  
 **Dependency**: 1.1, 1.2, 1.4  
 **Estimated**: 3-4 hours
 
-**Description**: 
+**Description**:
 Build resume display components for About/Resume page.
 
 **Checklist**:
+
 - [ ] **ResumeSection.tsx**:
   - Main resume wrapper displaying all sections
   - Props: resume (data)
@@ -603,7 +645,7 @@ Build resume display components for About/Resume page.
   - Layout: Single column or two-column (responsive)
   - Test: Render with complete resume data
   - Accessibility: Semantic HTML, proper heading hierarchy
-  
+
 - [ ] **ExperienceList.tsx**:
   - Display work experience timeline
   - Props: experiences (array)
@@ -611,7 +653,7 @@ Build resume display components for About/Resume page.
   - Visual: Timeline or list format
   - Test: Render multiple experiences, date formatting
   - Accessibility: List semantics, date clarity
-  
+
 - [ ] **EducationList.tsx**:
   - Display education entries
   - Props: education (array)
@@ -619,7 +661,7 @@ Build resume display components for About/Resume page.
   - Visual: Clean list format
   - Test: Render multiple educations
   - Accessibility: List semantics
-  
+
 - [ ] **SkillsList.tsx**:
   - Display skills organized by category
   - Props: skills (array or map by category)
@@ -629,6 +671,7 @@ Build resume display components for About/Resume page.
   - Accessibility: Keyboard navigation through tags
 
 **Acceptance Criteria**:
+
 - ✅ All resume sections render correctly
 - ✅ Data displays with proper formatting (dates, lists)
 - ✅ Responsive layout on all devices
@@ -637,6 +680,7 @@ Build resume display components for About/Resume page.
 - ✅ Integration with useResume() hook working
 
 **Files Created**:
+
 - src/components/resume/ResumeSection.tsx
 - src/components/resume/ExperienceList.tsx
 - src/components/resume/EducationList.tsx
@@ -652,16 +696,18 @@ Build resume display components for About/Resume page.
 ## Phase 4: Page Components & Routing
 
 ### 4.1 Create Page Components
+
 **Priority**: 🔴 Critical  
 **Status**: TODO  
 **Owner**: [ASSIGN]  
 **Dependency**: 2.1, 2.2, 3.1  
 **Estimated**: 4-5 hours
 
-**Description**: 
+**Description**:
 Build top-level page components and routing structure.
 
 **Checklist**:
+
 - [ ] **HomePage.tsx**:
   - Landing page with hero section
   - Display featured/all projects grid
@@ -671,7 +717,7 @@ Build top-level page components and routing structure.
   - Test: Render, project loading, CTA clicks
   - Accessibility: Semantic HTML, alt text
   - Performance: Optimized images, lazy loading
-  
+
 - [ ] **ProjectDetailPage.tsx**:
   - Route: /project/:id
   - Fetch and display single project details
@@ -681,7 +727,7 @@ Build top-level page components and routing structure.
   - Loading: Skeleton or spinner while fetching
   - Test: Route params, data loading, error handling
   - Accessibility: Focus management on load
-  
+
 - [ ] **ResumePage.tsx** (or AboutPage.tsx):
   - Route: /resume or /about
   - Display complete resume
@@ -689,13 +735,13 @@ Build top-level page components and routing structure.
   - Contact information
   - Test: Render resume data, layout
   - Accessibility: Proper heading hierarchy
-  
+
 - [ ] **NotFoundPage.tsx**:
   - 404 error page
   - Display not found message
   - Navigation: Link back to home
   - Test: Route to invalid URL, verify 404 display
-  
+
 - [ ] **App.tsx** (Routing):
   - Set up React Router v6
   - Routes: /, /project/:id, /about/resume, /404, *
@@ -706,6 +752,7 @@ Build top-level page components and routing structure.
   - Test: Route navigation, layout persistence
 
 **Acceptance Criteria**:
+
 - ✅ All pages render correctly
 - ✅ Route navigation works
 - ✅ URL parameters handled (project/:id)
@@ -718,6 +765,7 @@ Build top-level page components and routing structure.
 - ✅ Integration tests for critical flows (US1-US3)
 
 **Files Created**:
+
 - src/pages/HomePage.tsx
 - src/pages/ProjectDetailPage.tsx
 - src/pages/ResumePage.tsx (or AboutPage.tsx)
@@ -734,47 +782,49 @@ Build top-level page components and routing structure.
 ## Phase 5: Performance & Optimization
 
 ### 5.1 Performance Optimization
+
 **Priority**: 🟠 High  
 **Status**: TODO  
 **Owner**: [ASSIGN]  
 **Dependency**: 4.1  
 **Estimated**: 3-4 hours
 
-**Description**: 
+**Description**:
 Optimize bundle size, render performance, and network requests.
 
 **Checklist**:
+
 - [ ] **Code splitting**:
   - Lazy load ProjectDetailPage (route-based)
   - React.lazy() + Suspense
   - Test: Verify separate chunk generated
-  
+
 - [ ] **Bundle analysis**:
   - Run `pnpm build --analyze`
   - Identify large dependencies
   - Optimize: Tree-shake unused code, dynamic imports
   - Target: <100KB gzipped bundle
-  
+
 - [ ] **Image optimization**:
   - Generate srcset for responsive images
   - Resize images for different devices (1x, 2x)
   - Format: WebP with fallback to JPEG
   - Lazy loading: Use IntersectionObserver
   - Test: Verify images load lazily
-  
+
 - [ ] **Render performance**:
   - Profile with React DevTools Profiler
   - Memoize expensive components (React.memo)
   - useMemo for expensive calculations
   - useCallback for stable function references
   - Test: Verify render times <16ms
-  
+
 - [ ] **Network optimization**:
   - Minify JSON data files
   - Gzip compression
   - HTTP caching headers
   - CDN deployment (optional)
-  
+
 - [ ] **Lighthouse audit**:
   - Target: 90+ score on all metrics
   - LCP (Largest Contentful Paint): <2.5s
@@ -782,6 +832,7 @@ Optimize bundle size, render performance, and network requests.
   - CLS (Cumulative Layout Shift): <0.1
 
 **Acceptance Criteria**:
+
 - ✅ Bundle size <100KB gzipped
 - ✅ Lighthouse score >90 on all metrics
 - ✅ Homepage loads <2s on 4G (p95)
@@ -790,6 +841,7 @@ Optimize bundle size, render performance, and network requests.
 - ✅ Performance metrics documented
 
 **Files Modified**:
+
 - src/App.tsx (route code splitting)
 - vite.config.ts (build optimization)
 - src/components/projects/ProjectCard.tsx (memoization)
@@ -798,54 +850,57 @@ Optimize bundle size, render performance, and network requests.
 ---
 
 ### 5.2 Accessibility Compliance
+
 **Priority**: 🟠 High  
 **Status**: TODO  
 **Owner**: [ASSIGN]  
 **Dependency**: 4.1  
 **Estimated**: 2-3 hours
 
-**Description**: 
+**Description**:
 Ensure WCAG 2.1 AA compliance across all pages.
 
 **Checklist**:
+
 - [ ] **Color contrast**:
   - Verify 4.5:1 ratio for text
   - Verify 3:1 ratio for graphics/borders
   - Test: Run Axe audit on all pages
-  
+
 - [ ] **Keyboard navigation**:
   - All interactive elements focusable
   - Tab order logical
   - Focus visible (keyboard indicator)
   - Escape key closes modals
   - Test: Navigate entire site with keyboard only
-  
+
 - [ ] **Screen reader testing**:
   - Semantic HTML (<nav>, <main>, <article>, etc.)
   - ARIA labels for icons/images
   - Form labels properly associated
   - Test: Test with screen reader (NVDA, JAWS, VoiceOver)
-  
+
 - [ ] **Alternative text**:
   - All images have alt text
   - Alt text descriptive, not redundant
   - Decorative images: alt=""
-  
+
 - [ ] **Heading hierarchy**:
   - h1, h2, h3 in logical order
   - No skipped levels (h1 → h3 bad)
   - Test: Verify outline/structure
-  
+
 - [ ] **Link text**:
   - Descriptive link text (not "click here")
   - Same text = same destination
-  
+
 - [ ] **Automated audit**:
   - Axe accessibility scanner in tests
   - Lighthouse accessibility audit
   - Tests must pass before merge
 
 **Acceptance Criteria**:
+
 - ✅ All pages pass Axe audit (0 violations)
 - ✅ Keyboard navigation works (Tab through all controls)
 - ✅ Screen reader testing passes (manual review)
@@ -853,6 +908,7 @@ Ensure WCAG 2.1 AA compliance across all pages.
 - ✅ WCAG 2.1 AA compliance verified
 
 **Files Modified**:
+
 - All component files (accessibility fixes)
 - tests/a11y/ (new accessibility tests)
 
@@ -861,34 +917,36 @@ Ensure WCAG 2.1 AA compliance across all pages.
 ## Phase 6: Testing & Documentation
 
 ### 6.1 Comprehensive Test Coverage
+
 **Priority**: 🟠 High  
 **Status**: TODO  
 **Owner**: [ASSIGN]  
 **Dependency**: 5.1, 5.2  
 **Estimated**: 4-5 hours
 
-**Description**: 
+**Description**:
 Write tests to achieve 80% coverage and validate critical user flows.
 
 **Checklist**:
+
 - [ ] **Unit test coverage**:
   - Target: 80% coverage across all components
   - Coverage report: `pnpm test:coverage`
   - Files: All components, hooks, services
   - Scenarios: Happy path, error states, edge cases
-  
+
 - [ ] **Integration tests** (critical flows):
   - US1: Browse Portfolio - Load home, scroll projects, click project
   - US2: Project Details - View full project info, related projects
   - US3: Resume Access - View resume, navigate sections
   - Test with Playwright
-  
+
 - [ ] **E2E tests**:
   - Full user journey tests
   - Cross-browser (Chromium, Firefox, WebKit)
   - Screenshots on failure
   - Video recording (optional)
-  
+
 - [ ] **Test documentation**:
   - How to run tests locally
   - How to write new tests
@@ -896,6 +954,7 @@ Write tests to achieve 80% coverage and validate critical user flows.
   - Coverage requirements
 
 **Acceptance Criteria**:
+
 - ✅ Overall test coverage >80%
 - ✅ All critical user flows (US1-US3) tested
 - ✅ Unit tests: Happy path + error scenarios
@@ -904,22 +963,25 @@ Write tests to achieve 80% coverage and validate critical user flows.
 - ✅ CI/CD pipeline: Tests run on every push
 
 **Files Created**:
+
 - Complete test suite for all components
 - docs/TESTING.md (test documentation)
 
 ---
 
 ### 6.2 Project Documentation
+
 **Priority**: 🟠 High  
 **Status**: TODO  
 **Owner**: [ASSIGN]  
 **Dependency**: 4.1  
 **Estimated**: 2-3 hours
 
-**Description**: 
+**Description**:
 Write developer documentation and deployment guides.
 
 **Checklist**:
+
 - [ ] **README.md**:
   - Project description
   - Feature overview
@@ -928,26 +990,26 @@ Write developer documentation and deployment guides.
   - Deployment instructions
   - Contributing guide
   - License
-  
+
 - [ ] **ARCHITECTURE.md**:
   - Component architecture diagram
   - Data flow diagram
   - Routing structure
   - State management approach
   - Performance considerations
-  
+
 - [ ] **API Documentation**:
   - Data structures (Project, Resume, etc.)
   - Service functions
   - Hook API
   - Example usage
-  
+
 - [ ] **Deployment Guide**:
   - Build process (pnpm build)
   - Deployment targets (Vercel, Netlify, GitHub Pages)
   - Environment variables
   - Pre-deployment checklist
-  
+
 - [ ] **Maintenance Guide**:
   - How to add new projects
   - How to update resume
@@ -955,6 +1017,7 @@ Write developer documentation and deployment guides.
   - Update dependencies safely
 
 **Acceptance Criteria**:
+
 - ✅ README.md complete and up-to-date
 - ✅ ARCHITECTURE.md documents system design
 - ✅ API documentation clear with examples
@@ -962,6 +1025,7 @@ Write developer documentation and deployment guides.
 - ✅ Maintenance guide for future updates
 
 **Files Created**:
+
 - README.md
 - docs/ARCHITECTURE.md
 - docs/API.md
@@ -971,48 +1035,51 @@ Write developer documentation and deployment guides.
 ---
 
 ### 6.3 Final QA & Deployment
+
 **Priority**: 🟠 High  
 **Status**: TODO  
 **Owner**: [ASSIGN]  
 **Dependency**: 6.1, 6.2  
 **Estimated**: 2-3 hours
 
-**Description**: 
+**Description**:
 Final quality assurance, code review, and deployment to production.
 
 **Checklist**:
+
 - [ ] **Code review**:
   - All PRs reviewed and approved
   - No console errors/warnings
   - No TypeScript errors
   - ESLint passes
   - Tests passing
-  
+
 - [ ] **Manual QA**:
   - Test on real devices (mobile, tablet, desktop)
   - Test on different browsers (Chrome, Firefox, Safari)
   - Test keyboard navigation
   - Test with screen reader
   - Test with VPN/different networks
-  
+
 - [ ] **Performance validation**:
   - Lighthouse score >90
   - Homepage <2s (4G p95)
   - Images <3s (4G p95)
   - Bundle size <100KB gzipped
-  
+
 - [ ] **Deployment**:
   - Build production bundle
   - Deploy to production environment
   - Verify deployed site
   - Monitor for errors (Sentry, etc.)
-  
+
 - [ ] **Post-deployment**:
   - Monitor performance metrics
   - Collect user feedback
   - Plan Phase 3 features (AI artwork, filtering)
 
 **Acceptance Criteria**:
+
 - ✅ All code reviewed and approved
 - ✅ No critical bugs or console errors
 - ✅ Performance targets met
@@ -1020,6 +1087,7 @@ Final quality assurance, code review, and deployment to production.
 - ✅ Live site verified and accessible
 
 **Files Created**:
+
 - .github/workflows/deploy.yml (deployment automation)
 - docs/DEPLOYMENT-CHECKLIST.md
 
@@ -1028,26 +1096,31 @@ Final quality assurance, code review, and deployment to production.
 ## Task Summary by User Story
 
 ### User Story 1: Browse Portfolio Projects
+
 **Tasks**: 2.1, 2.2, 4.1, 5.1  
 **Estimated Duration**: 5-6 days  
 **Acceptance**: User can view portfolio projects in grid, filter by tech, click to view details
 
 ### User Story 2: View Project Details
+
 **Tasks**: 2.2, 4.1, 5.1  
 **Estimated Duration**: 3-4 days  
 **Acceptance**: User can view full project info, related projects, external links
 
 ### User Story 3: Access Resume
+
 **Tasks**: 3.1, 4.1, 5.2  
 **Estimated Duration**: 2-3 days  
 **Acceptance**: User can view work experience, education, skills
 
 ### User Story 4: AI Artwork Display (Post-MVP)
+
 **Tasks**: 2.1 (extend), 2.2, 5.1  
 **Estimated Duration**: 1-2 days  
 **Acceptance**: User can see AI-generated artwork on project cards/details
 
 ### User Story 5: Filter Projects by Technology (Post-MVP)
+
 **Tasks**: 2.1 (extend), 4.1 (extend)  
 **Estimated Duration**: 1-2 days  
 **Acceptance**: User can filter projects by selected technology
@@ -1057,6 +1130,7 @@ Final quality assurance, code review, and deployment to production.
 ## Critical Path Analysis
 
 **MVP Critical Path** (must complete in order):
+
 1. Phase 0 (Setup) → 2 days
 2. Phase 1 (Foundation) → 4 days
 3. Phase 2 (Projects UI) → 3 days
@@ -1068,6 +1142,7 @@ Final quality assurance, code review, and deployment to production.
 **Total MVP Duration**: ~10-14 days (depends on team size/parallelization)
 
 **Optional/Post-MVP**:
+
 - Phase 4 features (AI artwork, filtering) → 2-3 days
 - Advanced animations, dark mode, blog → Post-launch
 
@@ -1084,12 +1159,14 @@ Final quality assurance, code review, and deployment to production.
 ---
 
 **Document Maintenance**:
+
 - Update statuses weekly
 - Add blockers/risks in comments
 - Sync with sprint planning
 - Archive completed phases after review
 
 **Questions?** Refer to:
+
 - [spec.md](./spec.md) - Feature requirements
 - [plan.md](./plan.md) - Implementation strategy
 - [data-model.md](./data-model.md) - Data structures

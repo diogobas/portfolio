@@ -33,18 +33,18 @@ Use a project-image manifest with a source URL, usage status, meaningful alt tex
 
 Add each project to the searchable archive with a GitHub link. Feature a small curated subset on the home page only after confirming which best represents current work.
 
-| Project | Planned description source | Initial technology evidence | Placement |
-| --- | --- | --- | --- |
-| Cappella Mosaico | owner-provided product history and approved mobile screenshots | to be confirmed | featured after asset review; label as archived/discontinued |
-| Luncheon | owner notes and public release when available | Python APIs: Rogers API and Triangle API | do not feature until the app or repository is publicly available |
-| Etikagis | repository inspection / owner notes required | to be confirmed | archive after confirmation |
-| SGS | repository inspection / owner notes required | to be confirmed | archive after confirmation |
-| LojaVirtual | repository inspection / owner notes required | to be confirmed | archive after confirmation |
-| GymRats | repository README | Python, FastAPI, React, Vite, TypeScript, GitHub Pages | recommended featured project |
-| ILPN.ca | public website and owner confirmation | Planning Center / Church Center configuration and integrations | archive; approved screenshot requested during implementation |
-| TaskFlow Fullstack | repository README | React, TypeScript, Node.js, AWS, DynamoDB, PostgreSQL | archive; explicitly label as a learning project |
-| JSON Transformer API | repository README | Node.js, TypeScript, Express, Jest, Supertest | archive |
-| Deck Game | repository README | Java, Spring Boot, React, TypeScript, Material UI | archive unless a public deployment is added |
+| Project              | Planned description source                                     | Initial technology evidence                                    | Placement                                                        |
+| -------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | ---------------------------------------------------------------- |
+| Cappella Mosaico     | owner-provided product history and approved mobile screenshots | to be confirmed                                                | featured after asset review; label as archived/discontinued      |
+| Luncheon             | owner notes and public release when available                  | Python APIs: Rogers API and Triangle API                       | do not feature until the app or repository is publicly available |
+| Etikagis             | repository inspection / owner notes required                   | to be confirmed                                                | archive after confirmation                                       |
+| SGS                  | repository inspection / owner notes required                   | to be confirmed                                                | archive after confirmation                                       |
+| LojaVirtual          | repository inspection / owner notes required                   | to be confirmed                                                | archive after confirmation                                       |
+| GymRats              | repository README                                              | Python, FastAPI, React, Vite, TypeScript, GitHub Pages         | recommended featured project                                     |
+| ILPN.ca              | public website and owner confirmation                          | Planning Center / Church Center configuration and integrations | archive; approved screenshot requested during implementation     |
+| TaskFlow Fullstack   | repository README                                              | React, TypeScript, Node.js, AWS, DynamoDB, PostgreSQL          | archive; explicitly label as a learning project                  |
+| JSON Transformer API | repository README                                              | Node.js, TypeScript, Express, Jest, Supertest                  | archive                                                          |
+| Deck Game            | repository README                                              | Java, Spring Boot, React, TypeScript, Material UI              | archive unless a public deployment is added                      |
 
 ### Project positioning guidance
 

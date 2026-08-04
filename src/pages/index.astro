@@ -2,7 +2,7 @@
 import ExperienceList from '../components/ExperienceList.astro';
 import ProjectPreview from '../components/ProjectPreview.astro';
 import SiteLayout from '../layouts/SiteLayout.astro';
-import { experiences, profile, socialLinks } from '../data/profile';
+import { homeExperiences as experiences, profile, socialLinks } from '../data/resume';
 import { featuredProjects } from '../data/projects';
 ---
 
@@ -20,23 +20,19 @@ import { featuredProjects } from '../data/projects';
         <a href="#about">About</a>
         <a href="#experience">Experience</a>
         <a href="#projects">Projects</a>
+        <a href="/resume/">Resume</a>
         <a href="/certifications/">Certifications</a>
       </nav>
-
-      <aside class="currently" aria-labelledby="currently-title">
-        <p class="section-kicker">Currently</p>
-        <h2 id="currently-title">Learning technology and full-stack engineering</h2>
-        <p>
-          I’m focused on creating reliable learning experiences, strengthening full-stack systems, and
-          continuing to grow as an engineer.
-        </p>
-      </aside>
 
       <ul class="social-links" aria-label="Social links">
         {
           socialLinks.map((link) => (
             <li>
-              <a href={link.href} target={link.external ? '_blank' : undefined} rel={link.external ? 'noreferrer' : undefined}>
+              <a
+                href={link.href}
+                target={link.external ? '_blank' : undefined}
+                rel={link.external ? 'noreferrer' : undefined}
+              >
                 <span class="sr-only">{link.label}</span>
                 <span aria-hidden="true">{link.icon}</span>
               </a>
@@ -52,19 +48,20 @@ import { featuredProjects } from '../data/projects';
         <h1 id="about-title">About</h1>
         <div class="prose">
           <p>
-            I’m a senior full-stack software engineer with 20 years of experience building scalable web
-            applications in collaborative, Agile teams. I enjoy turning complex product needs into clear,
-            maintainable experiences for the people who rely on them.
+            I’m a senior full-stack software engineer with 20 years of experience building scalable
+            web applications in collaborative, Agile teams. I enjoy turning complex product needs
+            into clear, maintainable experiences for the people who rely on them.
           </p>
           <p>
-            My work spans React and TypeScript on the frontend, Node.js and Java microservices on the
-            backend, and the cloud and delivery practices that connect them. I care deeply about quality,
-            accessibility, observability, and the small details that make software dependable.
+            My work spans React and TypeScript on the frontend, Node.js and Java microservices on
+            the backend, and the cloud and delivery practices that connect them. I care deeply about
+            quality, accessibility, observability, and the small details that make software
+            dependable.
           </p>
           <p>
-            I’m currently helping build digital curriculum and career-readiness experiences at Pearson’s
-            eDynamic Learning. Previously, I spent several years creating learning technology at HMH and
-            Neovation Learning Solutions.
+            I’m currently helping build digital curriculum and career-readiness experiences at
+            Pearson’s eDynamic Learning. Previously, I spent several years creating learning
+            technology at HMH and Neovation Learning Solutions.
           </p>
         </div>
       </section>
@@ -76,8 +73,12 @@ import { featuredProjects } from '../data/projects';
         </div>
         <ExperienceList experiences={experiences} />
         <div class="resume-cta">
-          <a href="/experience/">View full experience <span class="external-arrow" aria-hidden="true">↗</span></a>
-          <a href="/resume/diogo-bastos-resume.pdf" download>Download PDF <span aria-hidden="true">↓</span></a>
+          <a href="/experience/"
+            >View career history <span class="link-arrow" aria-hidden="true">→</span></a
+          >
+          <a href="/resume/diogo-bastos-resume.pdf" download
+            >Download résumé PDF <span aria-hidden="true">↓</span></a
+          >
         </div>
       </section>
 
@@ -89,16 +90,15 @@ import { featuredProjects } from '../data/projects';
         <div class="featured-projects">
           {featuredProjects.map((project) => <ProjectPreview project={project} />)}
         </div>
-        <a class="project-archive-cta" href="https://brittanychiang.com/archive" target="_blank" rel="noreferrer">
+        <a class="project-archive-cta" href="/projects/">
           View Full Project Archive <span class="link-arrow" aria-hidden="true">→</span>
-          <span class="sr-only"> (opens in a new tab)</span>
         </a>
       </section>
-
     </main>
     <footer class="site-footer">
       <p>
-        Designed and developed by Diogo Bastos. Built with Astro and TypeScript, with care for accessible, dependable experiences.
+        Designed and developed by Diogo Bastos. Built with Astro and TypeScript, with care for
+        accessible, dependable experiences.
       </p>
     </footer>
   </div>
